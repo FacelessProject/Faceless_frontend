@@ -1,0 +1,20 @@
+html,
+body {
+  // 默认字体尺寸
+  font-size: 12px;
+  // 默认字体
+  font-family: Poppins-Regular;
+
+  // 隐藏原生滚动条
+  *::-webkit-scrollbar {
+    width: 0px !important;
+    display: none !important;
+  }
+
+  // 兼容性处理
+  * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow: -moz-scrollbars-none !important;
+  }
+}

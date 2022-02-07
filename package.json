@@ -1,0 +1,47 @@
+{
+  "name": "ssv3",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "dev:prod": "vite --mode production",
+    "dev:staging": "vite --mode staging",
+    "build:prod": "vite build --mode production",
+    "build:staging": "vite build --mode staging"
+  },
+  "dependencies": {
+    "axios": "0.21.1",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "echarts": "5.2.2",
+    "ethers": "^5.1.4",
+    "events": "^3.3.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "normalize.css": "^8.0.1",
+    "pinia": "^2.0.11",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "swiper": "^7.0.1",
+    "util": "^0.12.4",
+    "vfonts": "^0.1.0",
+    "vue": "^3.2.25",
+    "vue-i18n": "^9.1.6",
+    "vue-router": "^4.0.6",
+    "wallet-ethers": "^1.0.4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-inject": "^4.0.3",
+    "@types/node": "^16.6.2",
+    "@vitejs/plugin-vue": "^2.0.0",
+    "@zougt/vite-plugin-theme-preprocessor": "^1.4.4",
+    "autoprefixer": "^10.3.4",
+    "naive-ui": "^2.21.5",
+    "sass": "^1.32.12",
+    "sass-loader": "^11.0.1",
+    "typescript": "^4.4.4",
+    "vite": "^2.7.2",
+    "vue-tsc": "^0.29.8"
+  }
+}

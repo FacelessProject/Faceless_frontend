@@ -1,0 +1,9 @@
+{
+  "limit": 700000,
+  "chainName": "mainnet",
+  "fortmatic_key": "pk_live_16DB86C1365211E5",
+
+  "suterusu": {
+    "http": "/production"
+  }
+}

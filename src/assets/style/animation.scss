@@ -1,0 +1,27 @@
+// 路由切换效果
+@keyframes opacityIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacityOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.view-enter-active {
+  animation-duration: 0.35s;
+  animation-name: opacityIn;
+}
+.view-leave-active {
+  animation-duration: 0.35s;
+  animation-name: opacityOut;
+}
