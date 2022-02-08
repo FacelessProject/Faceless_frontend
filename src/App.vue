@@ -14,7 +14,11 @@ _(kind.value);
       <n-loading-bar-provider>
         <n-message-provider>
           <div id="app">
-            <router-view />
+            <router-view v-slot="{ Component }">
+              <transition appear mode="out-in" name="view">
+                <component :is="Component" />
+              </transition>
+            </router-view>
           </div>
         </n-message-provider>
       </n-loading-bar-provider>
