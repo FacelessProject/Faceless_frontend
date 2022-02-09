@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const props = defineProps({ add: { type: Boolean, default: false } });
+
 const emit = defineEmits(["close"]);
 
 const close = () => emit("close");
@@ -29,7 +31,9 @@ const close = () => emit("close");
               <span class="info_adr"> 0xe9e……87d56 </span>
             </div>
 
-            <span class="num"> 12.42 </span>
+            <span class="add" v-if="add"> Add </span>
+
+            <span class="num" v-else> 12.42 </span>
           </div>
         </div>
       </n-scrollbar>
@@ -150,6 +154,23 @@ const close = () => emit("close");
           font-size: 14px;
           color: rgba(255, 255, 255, 0.6);
           line-height: 14px;
+        }
+
+        .add {
+          width: 46px;
+          height: 24px;
+          border-radius: 4px;
+          background: #958efc;
+
+          font-size: 14px;
+          color: #ffffff;
+          line-height: 14px;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          cursor: pointer;
         }
 
         &:hover {

@@ -2,12 +2,20 @@
 import { ref } from "vue";
 import Deposit from "@/components/deposit.vue";
 import Transfer from "@/components/transfer.vue";
+import Assets from "@/components/assets.vue";
 
 let kind = ref("Deposit");
 
 const component: any = {
   Deposit,
   Transfer,
+  Assets,
+};
+
+const name: any = {
+  Deposit: "Deposit",
+  Transfer: "Transfer",
+  Assets: "My Assets",
 };
 </script>
 
@@ -18,8 +26,10 @@ const component: any = {
 
       <span class="kind" @click="kind = 'Transfer'"> Transfer </span>
 
+      <span class="kind" @click="kind = 'Assets'"> My Assets </span>
+
       <span :class="{ bar: true, [kind]: true }">
-        {{ kind }}
+        {{ name[kind] }}
       </span>
     </div>
 
@@ -40,7 +50,7 @@ const component: any = {
   margin-top: 95px;
 
   .tab {
-    width: 200px;
+    width: 300px;
     height: 44px;
     border-radius: 8px;
     background: #1e1e2c;
@@ -68,7 +78,7 @@ const component: any = {
       bottom: 0;
       position: absolute;
 
-      width: 50%;
+      width: 33.33%;
       font-size: 14px;
       color: #1a1a1b;
       line-height: 14px;
@@ -86,7 +96,11 @@ const component: any = {
     }
 
     .Transfer {
-      left: 50%;
+      left: 33.33%;
+    }
+
+    .Assets {
+      left: 66.66%;
     }
   }
 

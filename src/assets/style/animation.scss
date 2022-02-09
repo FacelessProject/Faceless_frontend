@@ -130,10 +130,19 @@
 }
 
 .Transfer-enter-active {
-  animation-name: rightIn;
+  animation-name: leftIn;
   animation-duration: 0.35s;
 }
 .Transfer-leave-active {
+  animation-name: leftOut;
+  animation-duration: 0.35s;
+}
+
+.Assets-enter-active {
+  animation-name: rightIn;
+  animation-duration: 0.35s;
+}
+.Assets-leave-active {
   animation-name: rightOut;
   animation-duration: 0.35s;
 }
