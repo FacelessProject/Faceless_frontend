@@ -32,5 +32,6 @@ _(kind.value);
   min-width: auto;
   min-height: 100vh;
   flex-direction: column;
+  background-color: #10111e;
 }
 </style>

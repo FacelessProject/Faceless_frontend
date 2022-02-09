@@ -1,9 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+import Coin from "./coin.vue";
+
+let look = ref(false);
+
+const open = () => (look.value = true);
+
+const close = () => (look.value = false);
+</script>
 
 <template>
   <div id="input">
     <div class="token">
-      <div class="coin">
+      <div class="coin" @click="open">
         <span class="coin_name"> Sellect a token </span>
         <img src="@/assets/images/select.svg" />
       </div>
@@ -11,6 +20,12 @@
       <div class="balance">
         <span class="balance_name"> Balance: </span>
         <span class="balance_value"> - </span>
+      </div>
+
+      <div class="list">
+        <transition appear mode="out-in" name="coin">
+          <Coin @close="close" v-if="look" />
+        </transition>
       </div>
     </div>
 
@@ -39,6 +54,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    position: relative;
 
     padding: 0px 20px;
 
@@ -77,6 +94,16 @@
         color: rgba(255, 255, 255, 0.5);
         margin-left: 10px;
       }
+    }
+
+    .list {
+      top: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+
+      display: flex;
+      flex-direction: column;
     }
   }
 
