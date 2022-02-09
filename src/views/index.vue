@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import Typer from "typed.js";
 import { ref, onMounted } from "vue";
-import Deposit from "@/components/deposit.vue";
-import Transfer from "@/components/transfer.vue";
+import Operate from "@/components/operate.vue";
 
-let kind = ref("Deposit");
+let kind = ref("Operate");
 
 const component: any = {
-  Deposit,
-  Transfer,
+  Operate,
 };
 
 const init = () => {
@@ -52,21 +50,7 @@ onMounted(init);
       <div class="container">
         <div class="header">Connect wallet</div>
 
-        <div class="tab">
-          <span class="kind" @click="kind = 'Deposit'">
-            Deposit
-          </span>
-
-          <span class="kind" @click="kind = 'Transfer'">
-            Transfer
-          </span>
-
-          <span :class="{ bar: true, [kind]: true }">
-            {{ kind }}
-          </span>
-        </div>
-
-        <div class="content">
+        <div class="area">
           <transition appear mode="out-in" :name="kind">
             <component :is="component[kind]" />
           </transition>
@@ -172,63 +156,9 @@ onMounted(init);
         color: #958efc;
       }
 
-      .tab {
-        width: 200px;
-        height: 44px;
-        border-radius: 8px;
-        background: #1e1e2c;
-
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-
-        margin-top: 95px;
-
-        .kind {
-          flex: 1;
-          font-size: 14px;
-          color: #85858d;
-          line-height: 14px;
-          border-radius: 8px;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-        }
-
-        .bar {
-          top: 0;
-          left: 0;
-          bottom: 0;
-          position: absolute;
-
-          width: 50%;
-          font-size: 14px;
-          color: #1a1a1b;
-          line-height: 14px;
-          border-radius: 8px;
-          background: #ffffff;
-          transition: all 0.5s ease-in-out;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .Deposit {
-          left: 0;
-        }
-
-        .Transfer {
-          left: 50%;
-        }
-      }
-
-      .content {
+      .area {
         display: flex;
         flex-direction: column;
-        margin-top: 30px;
       }
     }
   }
