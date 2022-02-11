@@ -1,37 +1,30 @@
+import bsc from "@/assets/images/bsc.svg";
+import metamask from "@/assets/images/metamask.svg";
+import coinbase from "@/assets/images/coinbase.svg";
+import walletconnect from "@/assets/images/walletconnect.svg";
+
 const install: any = {
   ethereum: {
-    icon: "",
-    name: "Ethereum",
+    icon: bsc,
+    name: "Binance Smart Chain",
 
     include: [
       {
-        icon: "",
+        icon: metamask,
         name: "Metamask",
         symbol: "metamask",
       },
 
       {
-        icon: "",
+        icon: walletconnect,
         name: "WalletConnect",
         symbol: "walletconnect",
       },
 
       {
-        icon: "",
+        icon: coinbase,
+        name: "Coinbase",
         symbol: "walletlink",
-        name: "Coinbase Wallet",
-      },
-
-      {
-        icon: "",
-        name: "Portis",
-        symbol: "portis",
-      },
-
-      {
-        icon: "",
-        name: "Fortmatic",
-        symbol: "fortmatic",
       },
     ],
   },

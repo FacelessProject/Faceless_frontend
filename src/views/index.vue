@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import Typer from "typed.js";
+import { useConfig } from "@/store";
 import { ref, onMounted } from "vue";
+import Connect from "@/components/connect.vue";
 import Operate from "@/components/operate.vue";
+import Load from "@/components/load.vue";
 
 let kind = ref("Operate");
 
+const config = useConfig();
+
+const back = () => (kind.value = "Operate");
+
+const connect = () => (kind.value = "Connect");
+
 const component: any = {
+  Connect,
   Operate,
 };
 
@@ -48,15 +58,21 @@ onMounted(init);
 
     <div class="hander">
       <div class="container">
-        <div class="header">Connect wallet</div>
+        <div class="header">
+          <span class="connect" @click="connect">
+            Connect Wallet and Login
+          </span>
+        </div>
 
         <div class="area">
           <transition appear mode="out-in" :name="kind">
-            <component :is="component[kind]" />
+            <component @back="back" :is="component[kind]" />
           </transition>
         </div>
       </div>
     </div>
+
+    <Load :load="config.load" />
   </div>
 </template>
 
@@ -153,7 +169,24 @@ onMounted(init);
         align-items: center;
         justify-content: flex-end;
 
-        color: #958efc;
+        .connect {
+          height: 36px;
+          border-radius: 8px;
+          border: 1px solid #958efc;
+
+          font-size: 14px;
+          font-weight: 400;
+          color: #958efc;
+          line-height: 14px;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          padding: 0px 20px;
+
+          cursor: pointer;
+        }
       }
 
       .area {

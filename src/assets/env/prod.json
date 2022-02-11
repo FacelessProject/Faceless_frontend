@@ -3,6 +3,8 @@
   "chainName": "mainnet",
   "fortmatic_key": "pk_live_16DB86C1365211E5",
 
+  "walletChain": "ethereum",
+
   "suterusu": {
     "http": "/production"
   }
