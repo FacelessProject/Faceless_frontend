@@ -77,8 +77,9 @@ const line = ({ min, date, volumes }: any) => ({
     {
       top: 5,
       left: 5,
-      right: 30,
-      bottom: 18,
+      right: 0,
+      bottom: 0,
+      containLabel: true,
     },
   ],
 
