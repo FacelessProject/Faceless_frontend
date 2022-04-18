@@ -17,6 +17,7 @@
     "echarts": "5.2.2",
     "ethers": "^5.1.4",
     "events": "^3.3.0",
+    "gsap": "^3.10.3",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "normalize.css": "^8.0.1",
