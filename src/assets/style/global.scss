@@ -1,5 +1,7 @@
 html,
 body {
+  // 禁止压缩
+  flex: 0 0 auto;
   // 默认字体尺寸
   font-size: 12px;
   // 全局元素盒模型规则
