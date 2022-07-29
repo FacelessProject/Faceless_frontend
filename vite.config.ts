@@ -2,8 +2,6 @@
 import { resolve } from "path";
 // ts类型检测
 import { defineConfig } from "vite";
-// 样式自动前缀
-import autoprefixer from "autoprefixer";
 // 注入插件
 import inject from "@rollup/plugin-inject";
 // vite内vue插件
@@ -48,17 +46,17 @@ export default defineConfig({
   },
   // 资源内联限制
   build: {
+    sourcemap: false,
+
     minify: "esbuild",
 
     assetsInlineLimit: 0,
 
-    commonjsOptions: {
-      transformMixedEsModules: true,
-    },
+    reportCompressedSize: false,
 
-    rollupOptions: {
-      plugins: [inject({ Buffer: ["buffer", "Buffer"] })],
-    },
+    commonjsOptions: { transformMixedEsModules: true },
+
+    rollupOptions: { plugins: [inject({ Buffer: ["buffer", "Buffer"] })] },
   },
   // 别名配置
   resolve: {
@@ -111,9 +109,7 @@ export default defineConfig({
     // 样式插件
     postcss: {
       plugins: [
-        autoprefixer({
-          overrideBrowserslist: ["last 20 versions"],
-        }),
+        require("autoprefixer")({ overrideBrowserslist: ["last 20 versions"], grid: true }),
       ],
     },
     // 样式处理
