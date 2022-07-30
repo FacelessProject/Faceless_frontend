@@ -6,6 +6,8 @@ import { defineConfig } from "vite";
 import inject from "@rollup/plugin-inject";
 // vite内vue插件
 import vuePlugin from "@vitejs/plugin-vue";
+//静态资源压缩插件
+import compressPlugin from "vite-plugin-compression";
 // 主题配置插件
 import themePreprocessorPlugin from "@zougt/vite-plugin-theme-preprocessor";
 
@@ -17,6 +19,15 @@ export default defineConfig({
   plugins: [
     // 加载插件
     vuePlugin(),
+    // 压缩插件
+    compressPlugin({
+      ext: ".gz",
+      verbose: true,
+      disable: true,
+      threshold: 10240,
+      algorithm: "gzip",
+      deleteOriginFile: true,
+    }),
     // 主题插件
     themePreprocessorPlugin({
       scss: {
@@ -57,6 +68,8 @@ export default defineConfig({
     commonjsOptions: { transformMixedEsModules: true },
 
     rollupOptions: { plugins: [inject({ Buffer: ["buffer", "Buffer"] })] },
+
+    terserOptions: { compress: { drop_console: true, drop_debugger: true } },
   },
   // 别名配置
   resolve: {
