@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 import inject from "@rollup/plugin-inject";
 // vite内vue插件
 import vuePlugin from "@vitejs/plugin-vue";
-//静态资源压缩插件
+// 静态资源压缩插件
 import compressPlugin from "vite-plugin-compression";
 // 主题配置插件
 import themePreprocessorPlugin from "@zougt/vite-plugin-theme-preprocessor";
@@ -26,7 +26,7 @@ export default defineConfig({
       disable: false,
       threshold: 10240,
       algorithm: "gzip",
-      deleteOriginFile: true,
+      deleteOriginFile: false,
     }),
     // 主题插件
     themePreprocessorPlugin({
