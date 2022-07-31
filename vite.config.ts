@@ -23,7 +23,7 @@ export default defineConfig({
     compressPlugin({
       ext: ".gz",
       verbose: true,
-      disable: true,
+      disable: false,
       threshold: 10240,
       algorithm: "gzip",
       deleteOriginFile: true,
