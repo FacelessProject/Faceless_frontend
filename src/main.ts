@@ -12,9 +12,7 @@ import "./assets/font/poppins.scss";
 import "./assets/style/global.scss";
 import "./assets/style/animation.scss";
 
-createApp(App)
-  .use(i18n)
-  .use(naive)
-  .use(router)
-  .use(createPinia())
-  .mount("#app");
+import "./assets/js/TweenMax.min.js";
+import "./assets/js/SplitText.min.js";
+
+createApp(App).use(i18n).use(naive).use(router).use(createPinia()).mount("#app");
