@@ -5,7 +5,10 @@
 
   "walletChain": "ethereum",
 
+  "tooltip": "Please connect the wallet first.",
+
   "suterusu": {
-    "http": "/production"
+    "http": "/production",
+    "siteKey": "6Lcsh84gAAAAAOLQ5ns1PnsMTpMHGgcNWJcjyVoy"
   }
 }

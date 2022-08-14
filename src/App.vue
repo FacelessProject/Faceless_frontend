@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { darkTheme } from "naive-ui";
+import { useRouter } from "vue-router";
+import { onErrorCaptured, computed } from "vue";
 import darkConfig from "@/assets/style/overrides/dark.json";
+
+onErrorCaptured(() => {
+  push({ path: "/" });
+  setTimeout(() => window.location.reload(), 500);
+});
 
 const _ = (n: any) => (document.documentElement.className = n);
 const kind = computed(() => "theme-dark");
+const { push } = useRouter();
 _(kind.value);
 </script>
 

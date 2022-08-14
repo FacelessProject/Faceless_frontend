@@ -1,8 +1,5 @@
-import {
-  createRouter,
-  RouteRecordRaw,
-  createWebHistory,
-} from "vue-router";
+import { useWallet } from "@/store";
+import { createRouter, RouteRecordRaw, createWebHistory } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -26,7 +23,7 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach(({ meta: { check } }, from, next) => {
+router.beforeEach(({ meta: { check, home }, name, params }, from, next) => {
   if (check) return next("/");
   return next();
 });

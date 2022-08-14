@@ -1,6 +1,6 @@
 type Account = string | null;
 
-const omit = (account: Account): Account => {
+const omiter = (account: Account): Account => {
   // 省略显示
   if (!!account) {
     // 长度不足
@@ -12,4 +12,4 @@ const omit = (account: Account): Account => {
   return null;
 };
 
-export { omit };
+export { omiter };
