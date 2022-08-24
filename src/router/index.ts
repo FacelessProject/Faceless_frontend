@@ -4,10 +4,18 @@ import { createRouter, RouteRecordRaw, createWebHistory } from "vue-router";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
+    name: "home",
     component: () => import("@/views/index.vue"),
     meta: { check: false },
 
-    children: [],
+    children: [
+      {
+        name: "error",
+        path: "/:path(.*)*",
+        component: () => import("@/views/error.vue"),
+        meta: { check: false },
+      },
+    ],
   },
 ];
 
