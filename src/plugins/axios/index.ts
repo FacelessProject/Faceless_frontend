@@ -2,22 +2,22 @@
 import _axios from "./interceptor";
 
 // GET请求
-const $GET = function (path: string, params: object = {}) {
+const $GET = (path: string, params: object = {}) => {
   return _axios.get(path, { params });
 };
 
 // PUT请求
-const $PUT = function (path: string, params: object) {
+const $PUT = (path: string, params: object) => {
   return _axios.put(path, params);
 };
 
 // POST请求
-const $POST = function (path: string, params: object) {
-  return _axios.post(path, params);
+const $POST = (path: string, params: object, option: object = {}) => {
+  return _axios.post(path, params, option);
 };
 
 // DELETE请求
-const $DELETE = function (path: string, data: object) {
+const $DELETE = (path: string, data: object) => {
   return _axios.delete(path, { data });
 };
 

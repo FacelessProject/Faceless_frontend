@@ -1,9 +1,9 @@
 {
   "common": {
-    "fontFamily": "Inter-V",
     "primaryColor": "#0C0E10",
     "primaryColorSuppl": "#0C0E10FF",
     "primaryColorHover": "#0C0E10FF",
-    "primaryColorPressed": "#0C0E10FF"
+    "primaryColorPressed": "#0C0E10FF",
+    "fontFamily": "Poppins-Regular"
   }
 }

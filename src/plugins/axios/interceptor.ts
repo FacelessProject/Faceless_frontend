@@ -1,7 +1,6 @@
 import axios from "axios";
 import ENV from "@/assets/env";
 import { createDiscreteApi } from "naive-ui";
-const { notification, loadingBar } = createDiscreteApi(["notification", "loadingBar"]);
 
 // 初始化实例
 const _axios = axios.create({
