@@ -1,6 +1,6 @@
 import axios from "axios";
 import ENV from "@/assets/env";
-import { createDiscreteApi } from "naive-ui";
+import { message, notification, loadingBar } from "@/utils/command";
 
 // 初始化实例
 const _axios = axios.create({
