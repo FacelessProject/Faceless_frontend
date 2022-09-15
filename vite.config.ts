@@ -68,8 +68,6 @@ export default defineConfig({
     commonjsOptions: { transformMixedEsModules: true },
 
     rollupOptions: { plugins: [inject({ Buffer: ["buffer", "Buffer"] })] },
-
-    terserOptions: { compress: { drop_console: true, drop_debugger: true } },
   },
   // 别名配置
   resolve: {
