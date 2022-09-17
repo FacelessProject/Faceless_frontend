@@ -4,13 +4,21 @@ import { createRouter, RouteRecordRaw, createWebHistory } from "vue-router";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
+    name: "home",
     component: () => import("@/views/index.vue"),
+    meta: { check: false },
+  },
+
+  {
+    path: "/app",
+    component: () => import("@/views/app.vue"),
     meta: { check: false },
 
     children: [
       {
-        path: "/",
-        name: "home",
+        // 匹配根路径
+        path: "/app",
+        // 重定向到
         redirect: "wallet",
       },
 
@@ -25,14 +33,14 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/transfer.vue"),
         meta: { check: false },
       },
-
-      {
-        name: "error",
-        path: "/:path(.*)*",
-        component: () => import("@/views/error.vue"),
-        meta: { check: false },
-      },
     ],
+  },
+
+  {
+    name: "error",
+    path: "/:path(.*)*",
+    component: () => import("@/views/error.vue"),
+    meta: { check: false },
   },
 ];
 
