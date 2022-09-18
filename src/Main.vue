@@ -21,7 +21,7 @@ _(kind.value);
     <n-notification-provider>
       <n-loading-bar-provider>
         <n-message-provider>
-          <div id="app">
+          <div id="main">
             <router-view v-slot="{ Component }">
               <transition appear mode="out-in" name="view">
                 <component :is="Component" />
@@ -35,7 +35,7 @@ _(kind.value);
 </template>
 
 <style lang="scss" scoped>
-#app {
+#main {
   display: flex;
   min-width: auto;
   min-height: 100vh;

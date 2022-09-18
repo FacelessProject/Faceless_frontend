@@ -14,7 +14,7 @@ interface Connect {
   onChainChanged(callBack: Function): void;
 }
 
-export const useWallet = defineStore("wallet", {
+const useWallet = defineStore("wallet", {
   state: () => ({
     connect: {} as Connect,
 
@@ -28,3 +28,5 @@ export const useWallet = defineStore("wallet", {
 
   actions: {},
 });
+
+export { useWallet, Connect };

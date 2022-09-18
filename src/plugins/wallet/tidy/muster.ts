@@ -3,12 +3,54 @@ import solana from "@/assets/images/solana.png";
 import portis from "@/assets/images/portis.svg";
 import sollet from "@/assets/images/sollet.svg";
 import phantom from "@/assets/images/phantom.svg";
-import coinbase from "@/assets/images/coinbase.svg";
 import ethereum from "@/assets/images/ethereum.png";
 import metamask from "@/assets/images/metamask.svg";
+import walletlink from "@/assets/images/coinbase.svg";
 import fortmatic from "@/assets/images/fortmatic.svg";
 import waxio from "@/assets/images/waxcloudwallet.svg";
 import walletconnect from "@/assets/images/walletconnect.svg";
+
+const walletIcons: any = {
+  metamask: {
+    mainnet: ethereum,
+    icon: metamask,
+  },
+
+  walletconnect: {
+    mainnet: ethereum,
+    icon: walletconnect,
+  },
+
+  walletlink: {
+    mainnet: ethereum,
+    icon: walletlink,
+  },
+
+  portis: {
+    mainnet: ethereum,
+    icon: portis,
+  },
+
+  fortmatic: {
+    mainnet: ethereum,
+    icon: fortmatic,
+  },
+
+  sollet: {
+    mainnet: solana,
+    icon: sollet,
+  },
+
+  phantom: {
+    mainnet: solana,
+    icon: phantom,
+  },
+
+  waxio: {
+    mainnet: wax,
+    icon: waxio,
+  },
+};
 
 const muster: any = {
   ethereum: {
@@ -29,7 +71,7 @@ const muster: any = {
       },
 
       {
-        icon: coinbase,
+        icon: walletlink,
         symbol: "walletlink",
         name: "Coinbase Wallet",
       },
@@ -81,4 +123,4 @@ const muster: any = {
   },
 };
 
-export { muster };
+export { muster, walletIcons };

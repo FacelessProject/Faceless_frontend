@@ -1,3 +1,4 @@
 export { useUser } from "./user";
-export { useWallet } from "./wallet";
 export { useConfig } from "./config";
+export { useWallet } from "./wallet";
+export type { Connect } from "./wallet";
