@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { useWallet } from "@/store";
+import { CustomStatusButton } from "@/components/common";
 
 let loading = ref(false);
 
-let accountList: any = ref([]);
+let accounts: any = ref([]);
 
 const wallet = useWallet();
 
-const readUserAccountList = async () => {
+const emits = defineEmits(["loadNextComponent"]);
+
+const readUserAccounts = async () => {
   return new Promise(res => {
     setTimeout(() => {
       res([1, 2]);
@@ -16,16 +19,20 @@ const readUserAccountList = async () => {
   });
 };
 
-const getUserAccountList = async () => {
+const getUserAccounts = async () => {
   loading.value = true;
-  accountList.value = await readUserAccountList();
+  accounts.value = await readUserAccounts();
   loading.value = false;
+};
+
+const confirm = async () => {
+  emits("loadNextComponent", { name: "HRIPlatform", loadBack: true });
 };
 
 watch(
   () => wallet.connect.account,
   adr => {
-    if (adr) getUserAccountList();
+    if (adr) getUserAccounts();
   },
   { deep: true, immediate: true },
 );
@@ -43,7 +50,7 @@ watch(
         <div class="content">
           <!-- 账号列表 -->
           <XyzTransitionGroup appear-visible xyz="fade small-3 down-25% stagger-1.5">
-            <div class="item" v-for="it of accountList" :key="it">
+            <div class="item" v-for="it of accounts" :key="it">
               <span class="type"> Twitter </span>
               <span class="account"> @Hellohuman </span>
               <img src="@/assets/images/twitter.png" />
@@ -51,12 +58,21 @@ watch(
           </XyzTransitionGroup>
 
           <!-- 无数据 -->
-          <div class="noData" v-if="!loading && !accountList.length">
+          <div class="noData" v-if="!loading && !accounts.length">
             <n-empty description="No account yet" />
           </div>
         </div>
       </n-spin>
     </n-scrollbar>
+
+    <div class="btn">
+      <CustomStatusButton
+        text="Add New Account"
+        theme="dark"
+        :hover="true"
+        @userClickEvent="confirm"
+      />
+    </div>
   </div>
 </template>
 
@@ -73,7 +89,7 @@ watch(
   border-radius: 18px;
   background-color: #1a2736;
 
-  padding: 65px 100px;
+  padding: 75px 100px;
 
   .title {
     font-size: 37px;
@@ -82,13 +98,13 @@ watch(
     line-height: 40px;
     text-align: center;
     font-family: "JosefinSans-Medium";
+    margin-bottom: 25px;
   }
 
   .content {
     flex: 1;
     display: flex;
     flex-direction: column;
-    margin-top: 25px;
 
     min-height: 200px;
 
@@ -101,6 +117,17 @@ watch(
       margin-bottom: 10px;
       border-radius: 10px;
       overflow: hidden;
+
+      transition: all 0.5s;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(0.96);
+      }
+
+      &:active {
+        transform: scale(0.92);
+      }
 
       img {
         width: 100%;
@@ -138,6 +165,14 @@ watch(
       align-items: center;
       justify-content: center;
     }
+  }
+
+  .btn {
+    height: 48px;
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>

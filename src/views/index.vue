@@ -5,7 +5,7 @@ import ConnectWallet from "@/plugins/wallet/render/index.vue";
 <template>
   <div id="index">
     <div class="bg">
-      <img src="@/assets/images/logo.png" alt="logo" class="logo" />
+      <img src="@/assets/images/logo.svg" alt="logo" class="logo" />
 
       <div class="content">
         <span class="name">

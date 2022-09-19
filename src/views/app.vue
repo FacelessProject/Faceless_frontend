@@ -17,7 +17,7 @@ const toRoute = (route: string) => {
   <div id="app">
     <div class="head">
       <div class="logo">
-        <img src="@/assets/images/logo.png" alt="logo" />
+        <img src="@/assets/images/logo.svg" alt="logo" />
       </div>
 
       <div class="swap">
@@ -62,7 +62,7 @@ const toRoute = (route: string) => {
     position: sticky;
     backdrop-filter: blur(7px);
     padding: 16px;
-    z-index: 1;
+    z-index: 3;
 
     .logo {
       flex: 1;
