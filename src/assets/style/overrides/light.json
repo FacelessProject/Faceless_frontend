@@ -1,9 +1,16 @@
 {
   "common": {
+    "borderRadius": "10px",
     "primaryColor": "#0085FF",
     "primaryColorSuppl": "#0085FFFF",
     "primaryColorHover": "#0085FFFF",
     "primaryColorPressed": "#0085FFFF",
-    "fontFamily": "Poppins-Regular"
+    "fontFamily": "Ubuntu-Regular"
+  },
+
+  "Tooltip": {
+    "color": "#7878803D",
+    "textColor": "#FFFFFF",
+    "padding": "8px 17px"
   }
 }

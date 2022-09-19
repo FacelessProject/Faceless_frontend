@@ -8,6 +8,13 @@ let platforms: any = ref([]);
 
 const emits = defineEmits(["loadNextComponent"]);
 
+defineProps({
+  loadBack: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const readHRIPlatforms = async () => {
   return new Promise(res => {
     setTimeout(() => {
@@ -52,7 +59,7 @@ const onUserClickRouteBack = (params: object) => {
             <div class="item" v-for="it of platforms" :key="it">
               <n-tooltip>
                 <template #trigger>
-                  <div class="trigger">
+                  <div class="item_trigger">
                     <img src="@/assets/images/HRIPlatform.png" alt="HRI platform" />
                   </div>
                 </template>
@@ -71,7 +78,7 @@ const onUserClickRouteBack = (params: object) => {
     </n-scrollbar>
 
     <!-- 返回按钮 -->
-    <div class="back">
+    <div class="back" v-if="loadBack">
       <RouteBack name="AccountList" :loadBack="false" @userClickRouteBack="onUserClickRouteBack" />
     </div>
   </div>
@@ -147,7 +154,7 @@ const onUserClickRouteBack = (params: object) => {
           transform: scale(0.96);
           background-color: #127cf8;
 
-          .trigger img {
+          .item_trigger img {
             opacity: 1;
           }
         }
@@ -156,7 +163,7 @@ const onUserClickRouteBack = (params: object) => {
           transform: scale(0.7);
         }
 
-        .trigger {
+        .item_trigger {
           flex: 1;
           display: flex;
           align-items: center;

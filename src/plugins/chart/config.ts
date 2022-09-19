@@ -16,7 +16,7 @@ const noData = {
   color: "#958EFC",
   showSpinner: false,
   textColor: "#9da0a9",
-  fontFamily: "Poppins-Regular",
+  fontFamily: "Ubuntu-Regular",
   maskColor: "rgba(25, 27, 33, 0.2)",
 };
 

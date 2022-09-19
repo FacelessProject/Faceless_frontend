@@ -117,7 +117,7 @@ const userSignOut = () => {
   </div>
 
   <!-- 钱包选择平台 -->
-  <n-modal v-model:show="selectWalletModel" @after-leave="modelAfterLeave">
+  <n-modal v-model:show="selectWalletModel" @after-leave="modelAfterLeave" :z-index="10000">
     <div id="model">
       <div class="blockchain" v-for="(it, index) of output" :key="index">
         <div class="chain">
@@ -210,7 +210,7 @@ const userSignOut = () => {
 
 #operate {
   background: #1a2736;
-  border-radius: 3px;
+  border-radius: 10px;
   padding: 10px;
 
   .item {
