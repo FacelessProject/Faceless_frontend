@@ -9,7 +9,7 @@ let accounts: any = ref([]);
 
 const wallet = useWallet();
 
-const emits = defineEmits(["loadNextComponent"]);
+const emits = defineEmits(["loadOtherComponent"]);
 
 const readUserAccounts = async () => {
   return new Promise(res => {
@@ -26,7 +26,7 @@ const getUserAccounts = async () => {
 };
 
 const confirm = async () => {
-  emits("loadNextComponent", { name: "HRIPlatform", loadBack: true });
+  emits("loadOtherComponent", { name: "HRIPlatform", loadBack: true });
 };
 
 watch(

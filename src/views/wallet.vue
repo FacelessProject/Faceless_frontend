@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { AccountList } from "@/components/wallet";
 import { HRIPlatform } from "@/components/common";
+import MPhone from "@/components/HRIPlatform/phone/index.vue";
 
 let back = ref(false);
 
@@ -10,14 +11,20 @@ let currentBusinessComponent = ref("AccountList");
 const walletBusinessComponents: any = {
   AccountList,
   HRIPlatform,
+  MPhone,
 };
 
-interface LoadNextComponentParams {
+interface LoadOtherComponentParams {
   name: string;
   loadBack: boolean;
 }
 
-const loadNextComponent = ({ name, loadBack }: LoadNextComponentParams) => {
+const loadOtherComponent = ({ name, loadBack }: LoadOtherComponentParams) => {
+  currentBusinessComponent.value = name;
+  back.value = loadBack;
+};
+
+const userSelectedHRIPlatform = ({ name, loadBack }: LoadOtherComponentParams) => {
   currentBusinessComponent.value = name;
   back.value = loadBack;
 };
@@ -28,8 +35,9 @@ const loadNextComponent = ({ name, loadBack }: LoadNextComponentParams) => {
     <transition appear mode="out-in" name="view">
       <component
         :loadBack="back"
+        @userSelectedHRIPlatform="userSelectedHRIPlatform"
         :is="walletBusinessComponents[currentBusinessComponent]"
-        @loadNextComponent="loadNextComponent"
+        @loadOtherComponent="loadOtherComponent"
       />
     </transition>
   </div>

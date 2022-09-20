@@ -6,7 +6,7 @@ let loading = ref(false);
 
 let platforms: any = ref([]);
 
-const emits = defineEmits(["loadNextComponent"]);
+const emits = defineEmits(["loadOtherComponent", "userSelectedHRIPlatform"]);
 
 defineProps({
   loadBack: {
@@ -32,7 +32,11 @@ const getHRIPlatforms = async () => {
 getHRIPlatforms();
 
 const onUserClickRouteBack = (params: object) => {
-  emits("loadNextComponent", params);
+  emits("loadOtherComponent", params);
+};
+
+const userConfirmHRIPlatform = (name: string) => {
+  emits("userSelectedHRIPlatform", { name, loadBack: true });
 };
 </script>
 
@@ -59,7 +63,7 @@ const onUserClickRouteBack = (params: object) => {
             <div class="item" v-for="it of platforms" :key="it">
               <n-tooltip>
                 <template #trigger>
-                  <div class="item_trigger">
+                  <div class="item_trigger" @click="userConfirmHRIPlatform(`MPhone`)">
                     <img src="@/assets/images/HRIPlatform.png" alt="HRI platform" />
                   </div>
                 </template>
