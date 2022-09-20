@@ -92,90 +92,92 @@ watch(
 
     <div class="wealth">$<n-number-animation show-separator :precision="2" :to="1784.75" /></div>
 
-    <div class="deposit">
-      <CustomStatusButton
-        text="Deposit"
-        theme="light"
-        :hover="false"
-        @userClickEvent="depositConfirm"
-      />
-    </div>
+    <div class="content">
+      <div class="deposit">
+        <CustomStatusButton
+          text="Deposit"
+          theme="light"
+          :hover="false"
+          @userClickEvent="depositConfirm"
+        />
+      </div>
 
-    <div class="withdraw">
-      <CustomStatusButton
-        text="Withdraw"
-        theme="dark"
-        :hover="false"
-        @userClickEvent="withdrawConfirm"
-      />
-    </div>
+      <div class="withdraw">
+        <CustomStatusButton
+          text="Withdraw"
+          theme="dark"
+          :hover="false"
+          @userClickEvent="withdrawConfirm"
+        />
+      </div>
 
-    <div class="list">
-      <n-tabs animated v-model:value="currentQueryType" @update:value="getUserOperateRecords">
-        <n-tab-pane display-directive="show:lazy" name="history">
-          <div class="history_record">
-            <!-- 历史列表 -->
-            <XyzTransitionGroup appear-visible xyz="fade small-3 down-25% stagger-1.5">
-              <div class="item" v-for="it of historys" :key="it">
-                <img src="@/assets/images/user.png" class="avatar" />
+      <div class="list">
+        <n-tabs animated v-model:value="currentQueryType" @update:value="getUserOperateRecords">
+          <n-tab-pane display-directive="show:lazy" name="history">
+            <div class="history_record">
+              <!-- 历史列表 -->
+              <XyzTransitionGroup appear-visible xyz="fade small-3 down-25% stagger-1.5">
+                <div class="item" v-for="it of historys" :key="it">
+                  <img src="@/assets/images/user.png" class="avatar" />
 
-                <div class="item_info">
-                  <div class="item_info_call">
-                    <span class="call_name"> @Teatrrrraloo </span>
-                    <span class="call_platform"> Twitter </span>
+                  <div class="item_info">
+                    <div class="item_info_call">
+                      <span class="call_name"> @Teatrrrraloo </span>
+                      <span class="call_platform"> Twitter </span>
+                    </div>
+
+                    <span class="money"> -$12.00 </span>
                   </div>
-
-                  <span class="money"> -$12.00 </span>
                 </div>
+              </XyzTransitionGroup>
+
+              <!-- 无数据 -->
+              <div class="noData" v-if="!historys.length">
+                <n-empty description="No history yet" />
               </div>
-            </XyzTransitionGroup>
-
-            <!-- 无数据 -->
-            <div class="noData" v-if="!historys.length">
-              <n-empty description="No history yet" />
             </div>
-          </div>
 
-          <template #tab>
-            <div class="tab_head">
-              <span class="tab_head_name"> History </span>
-              <n-spin :size="15" v-if="historyLoading" />
-            </div>
-          </template>
-        </n-tab-pane>
+            <template #tab>
+              <div class="tab_head">
+                <span class="tab_head_name"> History </span>
+                <n-spin :size="15" v-if="historyLoading" />
+              </div>
+            </template>
+          </n-tab-pane>
 
-        <n-tab-pane display-directive="show:lazy" name="tokens">
-          <div class="tokens_record">
-            <!-- 历史列表 -->
-            <XyzTransitionGroup appear-visible xyz="fade small-3 down-25% stagger-1.5">
-              <div class="item" v-for="it of tokens" :key="it">
-                <img src="@/assets/images/ethereum.png" class="avatar" />
+          <n-tab-pane display-directive="show:lazy" name="tokens">
+            <div class="tokens_record">
+              <!-- 历史列表 -->
+              <XyzTransitionGroup appear-visible xyz="fade small-3 down-25% stagger-1.5">
+                <div class="item" v-for="it of tokens" :key="it">
+                  <img src="@/assets/images/ethereum.png" class="avatar" />
 
-                <div class="item_info">
-                  <div class="item_info_call">
-                    <span class="call_name"> ETH </span>
-                    <span class="call_platform"> Ethereum Token </span>
+                  <div class="item_info">
+                    <div class="item_info_call">
+                      <span class="call_name"> ETH </span>
+                      <span class="call_platform"> Ethereum Token </span>
+                    </div>
+
+                    <span class="money"> 2.5328 </span>
                   </div>
-
-                  <span class="money"> 2.5328 </span>
                 </div>
+              </XyzTransitionGroup>
+
+              <!-- 无数据 -->
+              <div class="noData" v-if="!tokens.length">
+                <n-empty description="No token yet" />
               </div>
-            </XyzTransitionGroup>
-
-            <!-- 无数据 -->
-            <div class="noData" v-if="!tokens.length">
-              <n-empty description="No token yet" />
             </div>
-          </div>
 
-          <template #tab>
-            <div class="tab_head">
-              <span class="tab_head_name"> Tokens </span>
-              <n-spin :size="15" v-if="tokensLoading" />
-            </div>
-          </template>
-        </n-tab-pane>
-      </n-tabs>
+            <template #tab>
+              <div class="tab_head">
+                <span class="tab_head_name"> Tokens </span>
+                <n-spin :size="15" v-if="tokensLoading" />
+              </div>
+            </template>
+          </n-tab-pane>
+        </n-tabs>
+      </div>
     </div>
   </div>
 </template>
@@ -193,7 +195,7 @@ watch(
   border-radius: 18px;
   background-color: #1a2736;
 
-  max-height: 800px;
+  max-height: 830px;
 
   .back {
     display: flex;
@@ -259,202 +261,207 @@ watch(
     font-family: "Ubuntu-Medium";
   }
 
-  .deposit {
-    height: 48px;
-    margin-top: 25px;
-
-    display: flex;
-    flex-direction: column;
-    padding: 0px 100px;
-    flex: 0 0 auto;
-  }
-
-  .withdraw {
-    height: 48px;
-    margin-top: 10px;
-
-    display: flex;
-    flex-direction: column;
-    padding: 0px 100px;
-    flex: 0 0 auto;
-  }
-
-  .list {
+  .content {
     flex: 1;
     display: flex;
     flex-direction: column;
 
-    padding: 0px 100px 20px 100px;
+    padding: 0px 100px;
 
-    margin-top: 35px;
+    .deposit {
+      height: 48px;
+      margin-top: 25px;
 
-    .history_record {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 auto;
+    }
+
+    .withdraw {
+      height: 48px;
+      margin-top: 10px;
+
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 auto;
+    }
+
+    .list {
       flex: 1;
       display: flex;
       flex-direction: column;
 
-      min-height: 200px;
+      margin-top: 35px;
+      padding-bottom: 20px;
 
-      .item {
+      .history_record {
+        flex: 1;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
 
-        &:last-child .item_info {
-          border-bottom: none;
-        }
+        min-height: 200px;
 
-        .avatar {
-          width: 40px;
-          height: 40px;
-          border-radius: 8px;
-          object-fit: cover;
-          overflow: hidden;
-        }
-
-        .item_info {
-          flex: 1;
+        .item {
           display: flex;
           align-items: center;
           justify-content: space-between;
 
-          border-bottom: 1px solid rgba(120, 120, 128, 0.45);
+          &:last-child .item_info {
+            border-bottom: none;
+          }
 
-          margin-left: 12px;
+          .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+            overflow: hidden;
+          }
 
-          padding: 10px 0px;
-
-          .item_info_call {
+          .item_info {
+            flex: 1;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
 
-            .call_name {
+            border-bottom: 1px solid rgba(120, 120, 128, 0.45);
+
+            margin-left: 12px;
+
+            padding: 10px 0px;
+
+            .item_info_call {
+              display: flex;
+              flex-direction: column;
+
+              .call_name {
+                font-size: 17px;
+                font-weight: 400;
+                color: #ffffff;
+                line-height: 17px;
+                font-family: "Ubuntu-Regular";
+              }
+
+              .call_platform {
+                font-size: 15px;
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.5);
+                line-height: 15px;
+                font-family: "JosefinSans-Regular";
+                margin-top: 10px;
+              }
+            }
+
+            .money {
               font-size: 17px;
               font-weight: 400;
               color: #ffffff;
               line-height: 17px;
-              font-family: "Ubuntu-Regular";
-            }
-
-            .call_platform {
-              font-size: 15px;
-              font-weight: 400;
-              color: rgba(255, 255, 255, 0.5);
-              line-height: 15px;
-              font-family: "JosefinSans-Regular";
-              margin-top: 10px;
+              font-family: "Ubuntu-Medium";
             }
           }
+        }
 
-          .money {
-            font-size: 17px;
-            font-weight: 400;
-            color: #ffffff;
-            line-height: 17px;
-            font-family: "Ubuntu-Medium";
-          }
+        .noData {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
 
-      .noData {
+      .tokens_record {
         flex: 1;
         display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
+        flex-direction: column;
 
-    .tokens_record {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+        min-height: 200px;
 
-      min-height: 200px;
-
-      .item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        &:last-child .item_info {
-          border-bottom: none;
-        }
-
-        .avatar {
-          width: 40px;
-          height: 40px;
-          border-radius: 8px;
-          object-fit: cover;
-          overflow: hidden;
-        }
-
-        .item_info {
-          flex: 1;
+        .item {
           display: flex;
           align-items: center;
           justify-content: space-between;
 
-          border-bottom: 1px solid rgba(120, 120, 128, 0.45);
+          &:last-child .item_info {
+            border-bottom: none;
+          }
 
-          margin-left: 12px;
+          .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+            overflow: hidden;
+          }
 
-          padding: 10px 0px;
-
-          .item_info_call {
+          .item_info {
+            flex: 1;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
 
-            .call_name {
+            border-bottom: 1px solid rgba(120, 120, 128, 0.45);
+
+            margin-left: 12px;
+
+            padding: 10px 0px;
+
+            .item_info_call {
+              display: flex;
+              flex-direction: column;
+
+              .call_name {
+                font-size: 17px;
+                font-weight: 400;
+                color: #ffffff;
+                line-height: 17px;
+                font-family: "Ubuntu-Regular";
+              }
+
+              .call_platform {
+                font-size: 15px;
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.5);
+                line-height: 15px;
+                font-family: "JosefinSans-Regular";
+                margin-top: 10px;
+              }
+            }
+
+            .money {
               font-size: 17px;
               font-weight: 400;
               color: #ffffff;
               line-height: 17px;
-              font-family: "Ubuntu-Regular";
-            }
-
-            .call_platform {
-              font-size: 15px;
-              font-weight: 400;
-              color: rgba(255, 255, 255, 0.5);
-              line-height: 15px;
-              font-family: "JosefinSans-Regular";
-              margin-top: 10px;
+              font-family: "Ubuntu-Medium";
             }
           }
+        }
 
-          .money {
-            font-size: 17px;
-            font-weight: 400;
-            color: #ffffff;
-            line-height: 17px;
-            font-family: "Ubuntu-Medium";
-          }
+        .noData {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
 
-      .noData {
-        flex: 1;
+      .tab_head {
+        width: 75px;
         display: flex;
         align-items: center;
         justify-content: center;
-      }
-    }
 
-    .tab_head {
-      width: 75px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      transition: all 0.5s;
-
-      .tab_head_name {
-        font-size: 15px;
-        font-weight: 600;
-        line-height: 15px;
-        font-family: "Ubuntu-Regular";
         transition: all 0.5s;
-        margin-right: 7px;
+
+        .tab_head_name {
+          font-size: 15px;
+          font-weight: 600;
+          line-height: 15px;
+          font-family: "Ubuntu-Regular";
+          transition: all 0.5s;
+          margin-right: 7px;
+        }
       }
     }
   }
