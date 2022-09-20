@@ -28,11 +28,7 @@ const readAccountHistoryTradeRecords = async () => {
 const readAccountTokensOperateRecords = async () => {
   return new Promise(res => {
     setTimeout(() => {
-      res([
-        1, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
-        21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
-        21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 2,
-      ]);
+      res([1, 2]);
     }, 3000);
   });
 };
