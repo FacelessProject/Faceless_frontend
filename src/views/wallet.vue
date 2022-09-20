@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { AccountList } from "@/components/wallet";
 import { HRIPlatform } from "@/components/common";
-import MPhone from "@/components/HRIPlatform/phone/index.vue";
+import MPhone from "@/components/RHRIPlatform/phone/index.vue";
 
 let back = ref(false);
 
