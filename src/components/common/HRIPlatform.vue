@@ -52,7 +52,7 @@ const userConfirmHRIPlatform = (name: string) => {
     </span>
 
     <n-scrollbar trigger="none" style="max-height: 500px">
-      <n-spin :show="loading" description="Loading platforms">
+      <n-spin :show="loading" size="large" description="Loading platforms">
         <div class="content">
           <!-- 平台列表 -->
           <XyzTransitionGroup

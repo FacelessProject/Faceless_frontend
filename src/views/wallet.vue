@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { AccountList } from "@/components/wallet";
+import { AccountList, AccountItem } from "@/components/wallet";
 import { HRIPlatform } from "@/components/common";
 import MPhone from "@/components/RHRIPlatform/phone/index.vue";
 
@@ -10,6 +10,7 @@ let currentBusinessComponent = ref("AccountList");
 
 const walletBusinessComponents: any = {
   AccountList,
+  AccountItem,
   HRIPlatform,
   MPhone,
 };

@@ -29,6 +29,10 @@ const confirm = async () => {
   emits("loadOtherComponent", { name: "HRIPlatform", loadBack: true });
 };
 
+const toAccountItem = (accountItem: object) => {
+  emits("loadOtherComponent", { name: "AccountItem", loadBack: true });
+};
+
 watch(
   () => wallet.connect.account,
   adr => {
@@ -46,11 +50,11 @@ watch(
     </span>
 
     <n-scrollbar trigger="none" style="max-height: 500px">
-      <n-spin :show="loading" description="Loading accounts">
+      <n-spin :show="loading" size="large" description="Loading accounts">
         <div class="content">
           <!-- 账号列表 -->
           <XyzTransitionGroup appear-visible xyz="fade small-3 down-25% stagger-1.5">
-            <div class="item" v-for="it of accounts" :key="it">
+            <div class="item" v-for="it of accounts" :key="it" @click="toAccountItem(it)">
               <span class="type"> Twitter </span>
               <span class="account"> @Hellohuman </span>
               <img src="@/assets/images/twitter.png" />

@@ -12,6 +12,9 @@ import {
   NButton,
   NDrawer,
   NSelect,
+  NTab,
+  NTabPane,
+  NTabs,
   NUpload,
   NDivider,
   NPopover,
@@ -70,6 +73,9 @@ const naive = create({
     NCollapseTransition,
     NLoadingBarProvider,
     NNotificationProvider,
+    NTab,
+    NTabPane,
+    NTabs,
   ],
 });
 
