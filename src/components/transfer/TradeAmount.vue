@@ -26,7 +26,7 @@ const onlyNumber = (num: string) => {
 
 <template>
   <div id="TradeAmount">
-    <img src="@/assets/images/account.png" class="userAvatar" />
+    <img src="@/assets/images/user.png" class="userAvatar" />
 
     <div class="info">
       <img src="@/assets/images/symbol.png" class="symbol" />
