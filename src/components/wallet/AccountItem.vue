@@ -28,7 +28,11 @@ const readAccountHistoryTradeRecords = async () => {
 const readAccountTokensOperateRecords = async () => {
   return new Promise(res => {
     setTimeout(() => {
-      res([1, 2]);
+      res([
+        1, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
+        21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
+        21, 21, 21, 21, 21, 21, 21, 21, 21, 2,
+      ]);
     }, 3000);
   });
 };
@@ -226,7 +230,7 @@ watch(
     align-items: center;
     justify-content: center;
 
-    padding: 20px 0px;
+    padding: 18px 0px;
 
     .symbol {
       width: 20px;
@@ -302,8 +306,19 @@ watch(
           align-items: center;
           justify-content: space-between;
 
+          transition: all 0.5s;
+          cursor: pointer;
+
           &:last-child .item_info {
             border-bottom: none;
+          }
+
+          &:hover {
+            transform: scale(0.96);
+          }
+
+          &:active {
+            transform: scale(0.92);
           }
 
           .avatar {
@@ -378,8 +393,19 @@ watch(
           align-items: center;
           justify-content: space-between;
 
+          transition: all 0.5s;
+          cursor: pointer;
+
           &:last-child .item_info {
             border-bottom: none;
+          }
+
+          &:hover {
+            transform: scale(0.96);
+          }
+
+          &:active {
+            transform: scale(0.92);
           }
 
           .avatar {
