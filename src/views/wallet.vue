@@ -1,33 +1,23 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { AccountList, AccountItem } from "@/components/wallet";
-import { HRIPlatform } from "@/components/common";
-import MPhone from "@/components/RHRIPlatform/phone/index.vue";
-
-let back = ref(false);
+import { MPhone } from "@/components/platform/create";
+import { AccountList, AccountItem, AddHRIPlatform } from "@/components/wallet";
 
 let currentBusinessComponent = ref("AccountList");
 
 const walletBusinessComponents: any = {
   AccountList,
   AccountItem,
-  HRIPlatform,
+  AddHRIPlatform,
   MPhone,
 };
 
 interface LoadOtherComponentParams {
   name: string;
-  loadBack: boolean;
 }
 
-const loadOtherComponent = ({ name, loadBack }: LoadOtherComponentParams) => {
+const loadOtherComponent = ({ name }: LoadOtherComponentParams) => {
   currentBusinessComponent.value = name;
-  back.value = loadBack;
-};
-
-const userSelectedHRIPlatform = ({ name, loadBack }: LoadOtherComponentParams) => {
-  currentBusinessComponent.value = name;
-  back.value = loadBack;
 };
 </script>
 
@@ -35,8 +25,6 @@ const userSelectedHRIPlatform = ({ name, loadBack }: LoadOtherComponentParams) =
   <div id="wallet">
     <transition appear mode="out-in" name="view">
       <component
-        :loadBack="back"
-        @userSelectedHRIPlatform="userSelectedHRIPlatform"
         :is="walletBusinessComponents[currentBusinessComponent]"
         @loadOtherComponent="loadOtherComponent"
       />

@@ -6,15 +6,10 @@ const props = defineProps({
     type: String,
     default: "/",
   },
-
-  loadBack: {
-    type: Boolean,
-    default: false,
-  },
 });
 
 const toBack = () => {
-  emits("userClickRouteBack", props);
+  emits("userClickRouteBack", props.name);
 };
 </script>
 

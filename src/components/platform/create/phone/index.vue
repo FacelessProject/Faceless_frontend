@@ -2,8 +2,6 @@
 import { ref } from "vue";
 import { EnterPhoneNumber, EnterCode } from "./process";
 
-let back = ref(false);
-
 let currentBusinessComponent = ref("EnterPhoneNumber");
 
 const emits = defineEmits(["loadOtherComponent"]);
@@ -15,16 +13,14 @@ const phoneBusinessComponents: any = {
 
 interface LoadOtherComponentParams {
   name: string;
-  loadBack: boolean;
 }
 
-const loadOtherComponent = ({ name, loadBack }: LoadOtherComponentParams) => {
+const loadOtherComponent = ({ name }: LoadOtherComponentParams) => {
   currentBusinessComponent.value = name;
-  back.value = loadBack;
 };
 
-const backParentComponent = (params: LoadOtherComponentParams) => {
-  emits("loadOtherComponent", params);
+const backParentComponent = ({ name }: LoadOtherComponentParams) => {
+  emits("loadOtherComponent", { name });
 };
 </script>
 
@@ -32,7 +28,7 @@ const backParentComponent = (params: LoadOtherComponentParams) => {
   <div id="phone">
     <transition mode="out-in" name="view">
       <component
-        :loadBack="back"
+        parentComponent="AccountList"
         @backParentComponent="backParentComponent"
         :is="phoneBusinessComponents[currentBusinessComponent]"
         @loadOtherComponent="loadOtherComponent"

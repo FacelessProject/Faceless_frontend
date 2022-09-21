@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { useWallet } from "@/store";
-import { RouteBack, CustomStatusButton } from "@/components/common";
+import { RouteBack, StatusUpdateButton } from "@/components/community";
 
 let currentQueryType = ref("history");
 
@@ -52,15 +52,15 @@ const getUserOperateRecords = async (type: string) => {
 };
 
 const depositConfirm = async () => {
-  emits("loadOtherComponent", { name: "DepositToken", loadBack: true });
+  emits("loadOtherComponent", { name: "DepositToken" });
 };
 
 const withdrawConfirm = async () => {
-  emits("loadOtherComponent", { name: "WithdrawToken", loadBack: true });
+  emits("loadOtherComponent", { name: "WithdrawToken" });
 };
 
-const onUserClickRouteBack = (params: object) => {
-  emits("loadOtherComponent", params);
+const onUserClickRouteBack = (name: string) => {
+  emits("loadOtherComponent", { name });
 };
 
 watch(
@@ -76,7 +76,7 @@ watch(
   <div id="AccountItem">
     <!-- 返回按钮 -->
     <div class="back">
-      <RouteBack name="AccountList" :loadBack="false" @userClickRouteBack="onUserClickRouteBack" />
+      <RouteBack name="AccountList" @userClickRouteBack="onUserClickRouteBack" />
     </div>
 
     <img src="@/assets/images/account.png" class="userAvatar" />
@@ -90,7 +90,7 @@ watch(
 
     <div class="content">
       <div class="deposit">
-        <CustomStatusButton
+        <StatusUpdateButton
           text="Deposit"
           theme="light"
           :hover="false"
@@ -99,7 +99,7 @@ watch(
       </div>
 
       <div class="withdraw">
-        <CustomStatusButton
+        <StatusUpdateButton
           text="Withdraw"
           theme="dark"
           :hover="false"

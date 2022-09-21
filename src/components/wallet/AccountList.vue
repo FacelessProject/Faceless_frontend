@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { useWallet } from "@/store";
-import { CustomStatusButton } from "@/components/common";
+import { StatusUpdateButton } from "@/components/community";
 
 let loading = ref(false);
 
@@ -26,11 +26,11 @@ const getUserAccounts = async () => {
 };
 
 const confirm = async () => {
-  emits("loadOtherComponent", { name: "HRIPlatform", loadBack: true });
+  emits("loadOtherComponent", { name: "AddHRIPlatform" });
 };
 
 const toAccountItem = (accountItem: object) => {
-  emits("loadOtherComponent", { name: "AccountItem", loadBack: true });
+  emits("loadOtherComponent", { name: "AccountItem" });
 };
 
 watch(
@@ -70,7 +70,7 @@ watch(
     </n-scrollbar>
 
     <div class="btn">
-      <CustomStatusButton
+      <StatusUpdateButton
         text="Add New Account"
         theme="dark"
         :hover="true"

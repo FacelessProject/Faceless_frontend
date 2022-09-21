@@ -29,7 +29,7 @@ const userConfirm = () => {
 </script>
 
 <template>
-  <div id="CustomStatusButton">
+  <div id="StatusUpdateButton">
     <transition appear mode="out-in" name="view">
       <!-- 行为按钮 -->
       <div class="regular" v-if="wallet.connect.account">
@@ -47,7 +47,7 @@ const userConfirm = () => {
 </template>
 
 <style lang="scss" scoped>
-#CustomStatusButton {
+#StatusUpdateButton {
   flex: 1;
   display: flex;
   flex-direction: column;

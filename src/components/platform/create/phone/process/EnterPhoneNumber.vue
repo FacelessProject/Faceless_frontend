@@ -1,23 +1,53 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { RouteBack, CustomStatusButton } from "@/components/common";
+import { RouteBack, StatusUpdateButton } from "@/components/community";
 
 const emits = defineEmits(["backParentComponent", "loadOtherComponent"]);
 
-let phoneCode = ref(null);
+defineProps({
+  parentComponent: {
+    type: String,
+    default: "/",
+    required: true,
+  },
+});
+
+let loading = ref(false);
+
+let areaCodes = ref(null);
+
+let phoneNumber = ref(null);
 
 let buttonStatusTheme = computed(() => {
-  if (phoneCode.value) return "light";
+  if (areaCodes.value && phoneNumber.value) return "light";
   return "dark";
 });
 
-const onUserClickRouteBack = (params: object) => {
-  emits("loadOtherComponent", params);
+const options: any = ref([]);
+
+const onUserClickRouteBack = (name: string) => {
+  emits("backParentComponent", { name });
 };
 
 const confirm = async () => {
-  emits("backParentComponent", { name: "AccountList", loadBack: false });
+  emits("loadOtherComponent", { name: "EnterCode" });
 };
+
+const readAreaCodes = async () => {
+  return new Promise(res => {
+    setTimeout(() => {
+      res([{ name: "+86 中国大陆", key: "86" }]);
+    }, 3000);
+  });
+};
+
+const getAreaCodes = async () => {
+  loading.value = true;
+  options.value = await readAreaCodes();
+  loading.value = false;
+};
+
+getAreaCodes();
 
 const onlyNumber = (num: string) => {
   return !num || /^\d+$/.test(num);
@@ -25,30 +55,43 @@ const onlyNumber = (num: string) => {
 </script>
 
 <template>
-  <div id="EnterCode">
-    <span class="title"> Enter Code </span>
+  <div id="EnterPhoneNumber">
+    <span class="title"> Enter Phone Number </span>
 
     <span class="hint">
-      An authentication code has been sent to <br />
-      your mobile phone. Please enter the code to finish the verification.
+      Please enter your phone number <br />
+      to receive a one-time code.
     </span>
 
     <div class="content">
       <div class="item">
+        <n-select
+          clearable
+          filterable
+          label-field="name"
+          value-field="key"
+          :loading="loading"
+          :options="options"
+          placeholder="Country/Region"
+          v-model:value="areaCodes"
+        />
+      </div>
+
+      <div class="item">
         <n-input
           autofocus
           clearable
-          :minlength="4"
+          :minlength="1"
           :allow-input="onlyNumber"
-          placeholder="Phone Code"
-          v-model:value="phoneCode"
+          placeholder="Phone Number"
+          v-model:value="phoneNumber"
         />
       </div>
     </div>
 
     <div class="btn">
-      <CustomStatusButton
-        text="Confirm"
+      <StatusUpdateButton
+        text="Next"
         :hover="false"
         :theme="buttonStatusTheme"
         @userClickEvent="confirm"
@@ -57,17 +100,13 @@ const onlyNumber = (num: string) => {
 
     <!-- 返回按钮 -->
     <div class="back">
-      <RouteBack
-        :loadBack="true"
-        name="EnterPhoneNumber"
-        @userClickRouteBack="onUserClickRouteBack"
-      />
+      <RouteBack :name="parentComponent" @userClickRouteBack="onUserClickRouteBack" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-#EnterCode {
+#EnterPhoneNumber {
   flex: 0;
   display: flex;
   flex-direction: column;
@@ -109,7 +148,6 @@ const onlyNumber = (num: string) => {
     flex-direction: column;
 
     .item {
-      flex: 1;
       display: flex;
       flex-direction: column;
 

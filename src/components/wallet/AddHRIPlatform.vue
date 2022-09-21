@@ -1,19 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { RouteBack } from "@/components/common";
+import { RouteBack } from "@/components/community";
 
 let loading = ref(false);
 
 let platforms: any = ref([]);
 
-const emits = defineEmits(["loadOtherComponent", "userSelectedHRIPlatform"]);
-
-defineProps({
-  loadBack: {
-    type: Boolean,
-    default: false,
-  },
-});
+const emits = defineEmits(["loadOtherComponent"]);
 
 const readHRIPlatforms = async () => {
   return new Promise(res => {
@@ -31,17 +24,17 @@ const getHRIPlatforms = async () => {
 
 getHRIPlatforms();
 
-const onUserClickRouteBack = (params: object) => {
-  emits("loadOtherComponent", params);
+const onUserClickRouteBack = (name: string) => {
+  emits("loadOtherComponent", { name });
 };
 
-const userConfirmHRIPlatform = (name: string) => {
-  emits("userSelectedHRIPlatform", { name, loadBack: true });
+const userCreateHRIPlatform = (name: string) => {
+  emits("loadOtherComponent", { name });
 };
 </script>
 
 <template>
-  <div id="HRIPlatform">
+  <div id="AddHRIPlatform">
     <span class="title">
       Select HRI platform <br />
       for the next operation
@@ -63,8 +56,8 @@ const userConfirmHRIPlatform = (name: string) => {
             <div class="item" v-for="it of platforms" :key="it">
               <n-tooltip>
                 <template #trigger>
-                  <div class="item_trigger" @click="userConfirmHRIPlatform(`MPhone`)">
-                    <img src="@/assets/images/HRIPlatform.png" alt="HRI platform" />
+                  <div class="item_trigger" @click="userCreateHRIPlatform(`MPhone`)">
+                    <img src="@/assets/images/phone.png" alt="HRI platform" />
                   </div>
                 </template>
 
@@ -82,14 +75,14 @@ const userConfirmHRIPlatform = (name: string) => {
     </n-scrollbar>
 
     <!-- 返回按钮 -->
-    <div class="back" v-if="loadBack">
-      <RouteBack name="AccountList" :loadBack="false" @userClickRouteBack="onUserClickRouteBack" />
+    <div class="back">
+      <RouteBack name="AccountList" @userClickRouteBack="onUserClickRouteBack" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-#HRIPlatform {
+#AddHRIPlatform {
   flex: 0;
   display: flex;
   flex-direction: column;
