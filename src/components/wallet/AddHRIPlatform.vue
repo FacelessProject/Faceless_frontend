@@ -37,11 +37,12 @@ const userCreateHRIPlatform = (name: string) => {
   <div id="AddHRIPlatform">
     <span class="title">
       Select HRI platform <br />
-      for the next operation
+      and create new account
     </span>
 
     <span class="hint">
-      Faceless is an app that brings regulation-compliant financial privacy to the mass.
+      Faceless is an app that brings regulation- <br />
+      compliant financial privacy to the mass.
     </span>
 
     <n-scrollbar trigger="none" style="max-height: 500px">
@@ -99,10 +100,10 @@ const userCreateHRIPlatform = (name: string) => {
   position: relative;
 
   .title {
-    font-size: 34px;
+    font-size: 32px;
     font-weight: 600;
     color: #ffffff;
-    line-height: 40px;
+    line-height: 38px;
     text-align: center;
     font-family: "JosefinSans-Medium";
   }

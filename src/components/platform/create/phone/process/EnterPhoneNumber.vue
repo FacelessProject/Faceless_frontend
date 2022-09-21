@@ -18,7 +18,7 @@ let areaCodes = ref(null);
 
 let phoneNumber = ref(null);
 
-let buttonStatusTheme = computed(() => {
+const buttonStatusTheme = computed(() => {
   if (areaCodes.value && phoneNumber.value) return "light";
   return "dark";
 });

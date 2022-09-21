@@ -28,11 +28,7 @@ const readAccountHistoryTradeRecords = async () => {
 const readAccountTokensOperateRecords = async () => {
   return new Promise(res => {
     setTimeout(() => {
-      res([
-        1, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
-        21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
-        21, 21, 21, 21, 21, 21, 21, 21, 21, 2,
-      ]);
+      res([1, 2]);
     }, 3000);
   });
 };
@@ -150,7 +146,7 @@ watch(
               <!-- 历史列表 -->
               <XyzTransitionGroup appear-visible xyz="fade small-3 down-25% stagger-1.5">
                 <div class="item" v-for="it of tokens" :key="it">
-                  <img src="@/assets/images/ethereum.png" class="avatar" />
+                  <img src="@/assets/images/eth.png" class="avatar" />
 
                   <div class="item_info">
                     <div class="item_info_call">

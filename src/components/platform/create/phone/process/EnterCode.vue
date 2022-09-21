@@ -14,7 +14,7 @@ const props = defineProps({
 
 let phoneCode = ref(null);
 
-let buttonStatusTheme = computed(() => {
+const buttonStatusTheme = computed(() => {
   if (phoneCode.value) return "light";
   return "dark";
 });

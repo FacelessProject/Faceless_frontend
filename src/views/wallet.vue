@@ -1,7 +1,14 @@
 <script setup lang="ts">
+import {
+  AccountList,
+  AccountItem,
+  AddHRIPlatform,
+  DepositToken,
+  WithdrawToken,
+} from "@/components/wallet";
+
 import { ref } from "vue";
 import { MPhone } from "@/components/platform/create";
-import { AccountList, AccountItem, AddHRIPlatform } from "@/components/wallet";
 
 let currentBusinessComponent = ref("AccountList");
 
@@ -10,6 +17,8 @@ const walletBusinessComponents: any = {
   AccountItem,
   AddHRIPlatform,
   MPhone,
+  DepositToken,
+  WithdrawToken,
 };
 
 interface LoadOtherComponentParams {

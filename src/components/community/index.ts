@@ -1,4 +1,5 @@
-import StatusUpdateButton from "./StatusUpdateButton.vue";
+import SelectCoin from "./SelectCoin.vue";
 import RouteBack from "./RouteBack.vue";
+import StatusUpdateButton from "./StatusUpdateButton.vue";
 
-export { StatusUpdateButton, RouteBack };
+export { StatusUpdateButton, RouteBack, SelectCoin };
