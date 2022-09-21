@@ -4,7 +4,7 @@ import { RouteBack, StatusUpdateButton, SelectCoin } from "@/components/communit
 
 const emits = defineEmits(["loadOtherComponent"]);
 
-let coin: any = ref(null);
+let coin = ref(null);
 
 let amount = ref(null);
 

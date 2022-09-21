@@ -1,12 +1,20 @@
 <script setup lang="ts">
+import {
+  RouteBack,
+  StatusUpdateButton,
+  SelectCoin,
+  ConfirmTradeAccount,
+} from "@/components/community";
+
 import { ref, computed } from "vue";
-import { RouteBack, StatusUpdateButton, SelectCoin } from "@/components/community";
 
 const emits = defineEmits(["loadOtherComponent"]);
 
-let coin: any = ref(null);
+let coin = ref(null);
 
 let amount = ref(null);
+
+let show = ref(true);
 
 const buttonStatusTheme = computed(() => {
   if (amount.value && coin.value) return "light";
@@ -63,6 +71,9 @@ const onlyNumber = (num: string) => {
     <div class="back">
       <RouteBack name="ReceiverAccount" @userClickRouteBack="onUserClickRouteBack" />
     </div>
+
+    <!-- 选择交易账户平台 -->
+    <ConfirmTradeAccount :show="show" :amount="amount" :coin="coin" />
   </div>
 </template>
 

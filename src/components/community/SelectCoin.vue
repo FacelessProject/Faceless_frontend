@@ -11,7 +11,7 @@ const emits = defineEmits(["update:coin"]);
 
 defineProps({
   coin: {
-    type: Object || null,
+    type: Object as any,
     required: false,
     default: null,
   },
