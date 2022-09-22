@@ -36,7 +36,7 @@ const toConnectWallet = async (symbol: string) => {
 
     Wallet.connect = initialWallet;
 
-    localStorage.setItem("WalletSymbol", symbol);
+    localStorage.setItem("FLWS", symbol);
 
     initialWallet.onAccountsChanged(async (account: string) => {
       Wallet.connect.account = account;
@@ -71,12 +71,11 @@ const userSignOut = () => {
   Wallet.auth.signature = "";
 };
 
-const autoMatchLastTimeSymbolCache = () => {
-  const symbol = localStorage.getItem("WalletSymbol");
-  walletSymbol.value = symbol || "";
+const autoMaticArouseCacheSignIn = async () => {
+  walletSymbol.value = localStorage.getItem("FLWS") || ``;
 };
 
-autoMatchLastTimeSymbolCache();
+autoMaticArouseCacheSignIn();
 </script>
 
 <template>
