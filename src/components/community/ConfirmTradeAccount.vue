@@ -111,11 +111,8 @@ watch(
                     </div>
 
                     <div :class="[`info_opt`, { info_opt_done: it.key === account?.key }]">
-                      <div class="info_money">
-                        <span :class="[`amount`, { not_enough: amount > it.amount }]">
-                          {{ it.amount }}
-                        </span>
-
+                      <div :class="[`money`, { noSeles: amount > it.amount }]">
+                        <span class="amount"> {{ it.amount }} </span>
                         <span class="coin"> {{ it.coin }} </span>
                       </div>
 
@@ -358,7 +355,7 @@ watch(
 
             transition: all 0.5s;
 
-            .info_money {
+            .money {
               display: flex;
               align-items: center;
               justify-content: center;
@@ -373,11 +370,6 @@ watch(
                 opacity: 0.3;
               }
 
-              .not_enough {
-                color: #ca5353 !important;
-                text-decoration: line-through;
-              }
-
               .coin {
                 font-size: 17px;
                 font-weight: 400;
@@ -386,6 +378,17 @@ watch(
                 font-family: "Ubuntu-Regular";
                 margin-left: 5px;
                 opacity: 0.3;
+              }
+            }
+
+            .noSeles {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              .amount {
+                color: #ca5353 !important;
+                text-decoration: line-through;
               }
             }
 
