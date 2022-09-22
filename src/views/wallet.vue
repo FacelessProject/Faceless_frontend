@@ -32,7 +32,7 @@ const loadOtherComponent = ({ name }: LoadOtherComponentParams) => {
 
 <template>
   <div id="wallet">
-    <transition appear mode="out-in" name="wallet">
+    <transition mode="out-in" name="wallet">
       <component
         :is="walletBusinessComponents[currentBusinessComponent]"
         @loadOtherComponent="loadOtherComponent"
