@@ -23,7 +23,7 @@ _(kind.value);
         <n-message-provider>
           <div id="main">
             <router-view v-slot="{ Component }">
-              <transition appear mode="out-in" name="view">
+              <transition appear mode="out-in" name="main">
                 <component :is="Component" />
               </transition>
             </router-view>

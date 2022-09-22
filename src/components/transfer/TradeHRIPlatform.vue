@@ -53,7 +53,7 @@ const userTradeHRIPlatform = (platform: object) => {
               <n-tooltip>
                 <template #trigger>
                   <div class="item_trigger" @click="userTradeHRIPlatform(it)">
-                    <img src="@/assets/images/phone.png" alt="HRI platform" />
+                    <img src="@/assets/images/platform.png" alt="HRI platform" />
                   </div>
                 </template>
 

@@ -75,7 +75,7 @@ watch(
       >
         <template #trigger>
           <n-button dashed>
-            <transition appear mode="out-in" name="view">
+            <transition appear mode="out-in" name="coin">
               <!-- 已选择 -->
               <div class="selected" v-if="coin">
                 <img :src="coin.icon" class="icon" />

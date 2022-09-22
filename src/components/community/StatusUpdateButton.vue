@@ -19,7 +19,7 @@ const userConfirm = () => {
 
 <template>
   <div id="StatusUpdateButton">
-    <transition appear mode="out-in" name="view">
+    <transition appear mode="out-in" name="button">
       <!-- 行为按钮 -->
       <div class="regular" v-if="wallet.connect.account">
         <div :class="[`btn`, theme, { hover }]" @click="userConfirm">

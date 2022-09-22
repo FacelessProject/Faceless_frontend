@@ -37,7 +37,7 @@ const toRoute = (route: string) => {
 
     <div class="content">
       <router-view v-slot="{ Component }">
-        <transition appear mode="out-in" name="view">
+        <transition appear mode="out-in" name="app">
           <component :is="Component" />
         </transition>
       </router-view>

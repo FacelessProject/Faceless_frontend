@@ -31,7 +31,7 @@ const onlyNumber = (num: string) => {
     <img src="@/assets/images/account.png" class="userAvatar" />
 
     <div class="info">
-      <img src="@/assets/images/symbol.png" class="symbol" />
+      <img src="@/assets/images/symbol.svg" class="symbol" />
       <span class="symbol_name"> @Hellohuman </span>
     </div>
 

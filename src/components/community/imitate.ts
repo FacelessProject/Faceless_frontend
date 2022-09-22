@@ -1,4 +1,4 @@
-import icon from "@/assets/images/eth.png";
+import icon from "@/assets/images/eth.svg";
 
 // 模拟代币列表mocks，字段为name,icon,blockchain
 // icon为图片路径

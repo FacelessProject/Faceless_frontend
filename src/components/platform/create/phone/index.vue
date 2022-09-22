@@ -26,7 +26,7 @@ const backParentComponent = ({ name }: LoadOtherComponentParams) => {
 
 <template>
   <div id="phone">
-    <transition mode="out-in" name="view">
+    <transition mode="out-in" name="phone">
       <component
         parentComponent="AddHRIPlatform"
         @backParentComponent="backParentComponent"

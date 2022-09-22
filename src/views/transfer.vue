@@ -21,7 +21,7 @@ const loadOtherComponent = ({ name }: LoadOtherComponentParams) => {
 
 <template>
   <div id="transfer">
-    <transition appear mode="out-in" name="view">
+    <transition appear mode="out-in" name="transfer">
       <component
         :is="transferBusinessComponents[currentBusinessComponent]"
         @loadOtherComponent="loadOtherComponent"

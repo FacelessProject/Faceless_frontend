@@ -82,7 +82,7 @@ watch(
     <img src="@/assets/images/account.png" class="userAvatar" />
 
     <div class="info">
-      <img src="@/assets/images/symbol.png" class="symbol" />
+      <img src="@/assets/images/symbol.svg" class="symbol" />
       <span class="symbol_name"> @Hellohuman </span>
     </div>
 
@@ -146,7 +146,7 @@ watch(
               <!-- 历史列表 -->
               <XyzTransitionGroup appear-visible xyz="fade small-3 down-25% stagger-1.5">
                 <div class="item" v-for="it of tokens" :key="it">
-                  <img src="@/assets/images/eth.png" class="avatar" />
+                  <img src="@/assets/images/eth.svg" class="avatar" />
 
                   <div class="item_info">
                     <div class="item_info_call">
