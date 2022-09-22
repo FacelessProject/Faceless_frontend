@@ -9,13 +9,9 @@ const wallet = useWallet();
 
 const emits = defineEmits(["update:coin"]);
 
-defineProps({
-  coin: {
-    type: Object as any,
-    required: false,
-    default: null,
-  },
-});
+defineProps<{
+  coin: object | null | any;
+}>();
 
 let show = ref(false);
 

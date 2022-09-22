@@ -1,12 +1,9 @@
 <script setup lang="ts">
 const emits = defineEmits(["userClickRouteBack"]);
 
-const props = defineProps({
-  name: {
-    type: String,
-    default: "/",
-  },
-});
+const props = defineProps<{
+  name: string;
+}>();
 
 const toBack = () => {
   emits("userClickRouteBack", props.name);

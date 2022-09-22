@@ -4,13 +4,9 @@ import { RouteBack, StatusUpdateButton } from "@/components/community";
 
 const emits = defineEmits(["backParentComponent", "loadOtherComponent"]);
 
-const props = defineProps({
-  parentComponent: {
-    type: String,
-    default: "/",
-    required: true,
-  },
-});
+const props = defineProps<{
+  parentComponent: string;
+}>();
 
 let phoneCode = ref(null);
 

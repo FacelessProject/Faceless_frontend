@@ -14,7 +14,7 @@ let coin = ref(null);
 
 let amount = ref(null);
 
-let show = ref(true);
+let selectTradeAccount = ref(false);
 
 const buttonStatusTheme = computed(() => {
   if (amount.value && coin.value) return "light";
@@ -25,7 +25,13 @@ const onUserClickRouteBack = (name: string) => {
   emits("loadOtherComponent", { name });
 };
 
-const confirm = async () => {};
+const confirm = async () => {
+  selectTradeAccount.value = true;
+};
+
+const onCloseTradeAccount = () => {
+  selectTradeAccount.value = false;
+};
 
 const onlyNumber = (num: string) => {
   return !num || /^\d+$/.test(num);
@@ -73,7 +79,12 @@ const onlyNumber = (num: string) => {
     </div>
 
     <!-- 选择交易账户平台 -->
-    <ConfirmTradeAccount :show="show" :amount="amount" :coin="coin" />
+    <ConfirmTradeAccount
+      :amount="amount"
+      :show="selectTradeAccount"
+      @closeTradeAccount="onCloseTradeAccount"
+      :coin="coin"
+    />
   </div>
 </template>
 

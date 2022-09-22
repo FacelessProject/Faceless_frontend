@@ -4,13 +4,9 @@ import { RouteBack, StatusUpdateButton } from "@/components/community";
 
 const emits = defineEmits(["backParentComponent", "loadOtherComponent"]);
 
-defineProps({
-  parentComponent: {
-    type: String,
-    default: "/",
-    required: true,
-  },
-});
+defineProps<{
+  parentComponent: string;
+}>();
 
 let loading = ref(false);
 

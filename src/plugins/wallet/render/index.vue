@@ -70,6 +70,13 @@ const userSignOut = () => {
   Wallet.connect = {} as Connect;
   Wallet.auth.signature = "";
 };
+
+const autoMatchLastTimeSymbolCache = () => {
+  const symbol = localStorage.getItem("WalletSymbol");
+  walletSymbol.value = symbol || "";
+};
+
+autoMatchLastTimeSymbolCache();
 </script>
 
 <template>

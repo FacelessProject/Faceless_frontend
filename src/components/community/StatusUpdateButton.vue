@@ -6,22 +6,11 @@ const wallet = useWallet();
 
 const emits = defineEmits(["userClickEvent"]);
 
-defineProps({
-  text: {
-    type: String,
-    default: "Default Text",
-  },
-
-  theme: {
-    type: String,
-    default: "light",
-  },
-
-  hover: {
-    type: Boolean,
-    default: false,
-  },
-});
+defineProps<{
+  text: string;
+  theme: string;
+  hover: boolean;
+}>();
 
 const userConfirm = () => {
   emits("userClickEvent");
