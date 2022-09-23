@@ -23,7 +23,7 @@ const confirm = async () => {
 <template>
   <div id="ReceiverAccount">
     <div class="logo">
-      <img src="@/assets/images/platform.png" />
+      <img src="@/assets/images/platform.svg" />
     </div>
 
     <span class="hint"> Please enter the receiver's HRI account. </span>
