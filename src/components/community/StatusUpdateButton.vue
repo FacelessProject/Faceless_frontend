@@ -29,7 +29,7 @@ const userConfirm = () => {
 
       <!-- 连接钱包 -->
       <div class="unusual" v-else>
-        <ConnectWallet />
+        <ConnectWallet :autoload="false" />
       </div>
     </transition>
   </div>

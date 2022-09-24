@@ -10,7 +10,7 @@ const wallet = useWallet();
 const emits = defineEmits(["update:coin"]);
 
 defineProps<{
-  coin: object | null | any;
+  coin: any;
 }>();
 
 let show = ref(false);

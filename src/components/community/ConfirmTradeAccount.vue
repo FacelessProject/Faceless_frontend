@@ -16,8 +16,8 @@ const emits = defineEmits(["closeTradeAccount"]);
 
 const props = defineProps<{
   show: boolean;
-  amount: string | number | null | any;
-  coin: object | null | any;
+  amount: any;
+  coin: any;
 }>();
 
 let account: any = ref(null);

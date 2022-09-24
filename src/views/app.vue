@@ -30,7 +30,7 @@ const toRoute = (route: string) => {
 
       <div class="connect">
         <div class="btn">
-          <ConnectWallet />
+          <ConnectWallet :autoload="true" />
         </div>
       </div>
     </div>

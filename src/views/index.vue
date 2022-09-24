@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
 import ConnectWallet from "@/plugins/wallet/render/index.vue";
+
+const { push } = useRouter();
+
+const onloaded = () => push("/wallet");
 </script>
 
 <template>
@@ -20,7 +25,7 @@ import ConnectWallet from "@/plugins/wallet/render/index.vue";
         </span>
 
         <div class="btn">
-          <ConnectWallet />
+          <ConnectWallet :autoload="true" @loaded="onloaded" />
         </div>
       </div>
     </div>

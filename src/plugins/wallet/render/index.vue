@@ -5,28 +5,27 @@ import { notification } from "@/utils/command";
 import { output, config, walletIcons } from "@/plugins/wallet/tidy";
 import { SwapHorizRound, LogOutRound } from "@vicons/material";
 import { useWallet, Connect } from "@/store";
-import { useRouter } from "vue-router";
 import { omiter } from "@/utils/omit";
 
-const Wallet = useWallet();
+const props = defineProps<{
+  autoload: boolean;
+}>();
 
-const { push } = useRouter();
+let active = ref("");
 
 let walletSymbol = ref("");
 
-let selectWalletModel = ref(false);
+let walletPlatform = ref(false);
 
-let activeConnectingWallet = ref("");
+const Wallet = useWallet();
 
-const openSelectWalletModel = () => (selectWalletModel.value = true);
+const emits = defineEmits(["loaded"]);
 
-const modelAfterLeave = () => {
-  if (Wallet.connect.account) return push("/wallet");
-};
+const openWalletPlatform = () => (walletPlatform.value = true);
 
 const toConnectWallet = async (symbol: string) => {
   try {
-    activeConnectingWallet.value = symbol;
+    active.value = symbol;
 
     const initialWallet: any = new Web3Provider(symbol, config[symbol]);
 
@@ -38,32 +37,39 @@ const toConnectWallet = async (symbol: string) => {
 
     localStorage.setItem("FLWS", symbol);
 
-    initialWallet.onAccountsChanged(async (account: string) => {
-      Wallet.connect.account = account;
-      Wallet.auth.signature = "";
-    });
+    initialWallet.onChainChanged(onWalletChainChange);
 
-    initialWallet.onChainChanged(async () => {
-      await push("/");
-      location.reload();
-    });
+    initialWallet.onAccountsChanged(onWalletAccountChange);
 
-    selectWalletModel.value = false;
+    walletPlatform.value = false;
 
-    // 钱包授权登录已完成
+    emits("loaded");
+
+    // 授权完成
   } catch ({ data, message }) {
+    // 钱包操作反馈
     notification.error({
       duration: 4000,
       content: "Error",
       meta: (data as any)?.message || message,
     });
   } finally {
-    activeConnectingWallet.value = "";
+    // 初始化激活项
+    active.value = "";
   }
 };
 
+const onWalletChainChange = async () => {
+  location.reload();
+};
+
+const onWalletAccountChange = async (account: any) => {
+  const params = { connect: { account }, auth: { signature: `` } };
+  Wallet.$patch(params);
+};
+
 const userSwitchWallet = () => {
-  openSelectWalletModel();
+  openWalletPlatform();
 };
 
 const userSignOut = () => {
@@ -71,22 +77,23 @@ const userSignOut = () => {
   Wallet.auth.signature = "";
 };
 
-const autoMaticArouseCacheSignIn = async () => {
-  walletSymbol.value = localStorage.getItem("FLWS") || ``;
+const autoloadCacheMetadata = () => {
+  walletSymbol.value = localStorage.getItem("FLWS") || "";
+  if (props.autoload && walletSymbol.value) return toConnectWallet(walletSymbol.value);
 };
 
-autoMaticArouseCacheSignIn();
+autoloadCacheMetadata();
 </script>
 
 <template>
   <div id="wallet">
     <!-- 已连接 -->
     <n-popover
-      :show-arrow="false"
-      placement="bottom"
       width="trigger"
-      :raw="true"
+      placement="bottom"
       v-if="Wallet.connect.account"
+      :show-arrow="false"
+      :raw="true"
     >
       <template #trigger>
         <div class="connected">
@@ -116,14 +123,14 @@ autoMaticArouseCacheSignIn();
       tabindex="0"
       outline="0"
       hidefocus="true"
-      @click="openSelectWalletModel"
+      @click="openWalletPlatform"
     >
       <span class="name"> Connect Wallet </span>
     </div>
   </div>
 
   <!-- 钱包选择平台 -->
-  <n-modal v-model:show="selectWalletModel" @after-leave="modelAfterLeave" :z-index="10000">
+  <n-modal v-model:show="walletPlatform" :z-index="10000">
     <div id="model">
       <div class="blockchain" v-for="(it, index) of output" :key="index">
         <div class="chain">
@@ -139,7 +146,10 @@ autoMaticArouseCacheSignIn();
         >
           <img :src="n.icon" :alt="n.name" class="wallet_icon" />
           <span class="wallet_name"> {{ n.name }} </span>
-          <n-spin :size="20" v-if="activeConnectingWallet === n.symbol" />
+
+          <transition mode="out-in" name="coin">
+            <n-spin :size="20" v-if="active === n.symbol" />
+          </transition>
         </div>
       </div>
     </div>
@@ -215,9 +225,9 @@ autoMaticArouseCacheSignIn();
 }
 
 #operate {
-  background: #27323f;
-  border-radius: 10px;
   padding: 10px;
+  border-radius: 10px;
+  background-color: #27323f;
 
   .item {
     display: flex;
