@@ -45,10 +45,6 @@ const buttonStatusTheme = computed(() => {
   return "dark";
 });
 
-const modelAfterLeave = () => {
-  emits("closeTradeAccount");
-};
-
 const confirm = async () => {
   emits("closeTradeAccount");
 };
@@ -69,7 +65,7 @@ watch(
 </script>
 
 <template>
-  <n-modal v-model:show="show" @after-leave="modelAfterLeave" :z-index="10000">
+  <n-modal v-model:show="show" :z-index="10000">
     <div id="ConfirmTradeAccount">
       <n-scrollbar style="max-height: 500px">
         <div class="content">
