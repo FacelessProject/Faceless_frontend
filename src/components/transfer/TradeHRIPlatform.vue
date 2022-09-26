@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { hris } from "@/components/community";
 
 let loading = ref(false);
 
@@ -10,7 +11,7 @@ const emits = defineEmits(["loadOtherComponent"]);
 const readHRIPlatforms = async () => {
   return new Promise(res => {
     setTimeout(() => {
-      res([1]);
+      res(hris);
     }, 3000);
   });
 };
@@ -53,11 +54,11 @@ const userTradeHRIPlatform = (platform: object) => {
               <n-tooltip>
                 <template #trigger>
                   <div class="item_trigger" @click="userTradeHRIPlatform(it)">
-                    <img src="@/assets/images/platform.svg" alt="HRI platform" />
+                    <img :src="it.icon" :alt="it.name" />
                   </div>
                 </template>
 
-                Mobile phone
+                {{ it.name }}
               </n-tooltip>
             </div>
           </XyzTransitionGroup>

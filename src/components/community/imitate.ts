@@ -1,10 +1,5 @@
 import icon from "@/assets/images/eth.svg";
-
-// 模拟代币列表mocks，字段为name,icon,blockchain
-// icon为图片路径
-// name为代币名称
-// blockchain为所在区块链
-// 模拟总条数为15条
+import platform from "@/assets/images/platform.svg";
 
 const mocks = [
   {
@@ -97,15 +92,6 @@ const mocks = [
     blockchain: "Theta",
   },
 ];
-
-// 模拟社交平台列表medias，字段为avatar,username,platform,amount,coin,key
-// avatar为头像路径
-// username为用户名
-// platform为社交平台名称
-// amount为代币数量，取值为1-10,精度为小数点后两位（必须）
-// coin为代币名称，取值为mocks中的name
-// key为唯一标识，取值为随机数
-// 模拟总条数为15条
 
 const medias = [
   {
@@ -244,4 +230,54 @@ const medias = [
   },
 ];
 
-export { mocks, medias };
+const hris = [
+  {
+    icon: platform,
+    name: "Mobile phone",
+    key: "MPhone",
+  },
+
+  {
+    icon: platform,
+    name: "Mobile phone",
+    key: "MPhone",
+  },
+
+  {
+    icon: platform,
+    name: "Mobile phone",
+    key: "MPhone",
+  },
+
+  {
+    icon: platform,
+    name: "Mobile phone",
+    key: "MPhone",
+  },
+
+  {
+    icon: platform,
+    name: "Mobile phone",
+    key: "MPhone",
+  },
+
+  {
+    icon: platform,
+    name: "Mobile phone",
+    key: "MPhone",
+  },
+
+  {
+    icon: platform,
+    name: "Mobile phone",
+    key: "MPhone",
+  },
+
+  {
+    icon: platform,
+    name: "Mobile phone",
+    key: "MPhone",
+  },
+];
+
+export { mocks, medias, hris };

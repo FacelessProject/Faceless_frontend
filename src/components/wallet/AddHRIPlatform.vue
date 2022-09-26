@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { RouteBack } from "@/components/community";
+import { RouteBack, hris } from "@/components/community";
 
 let loading = ref(false);
 
@@ -11,7 +11,7 @@ const emits = defineEmits(["loadOtherComponent"]);
 const readHRIPlatforms = async () => {
   return new Promise(res => {
     setTimeout(() => {
-      res([1]);
+      res(hris);
     }, 3000);
   });
 };
@@ -57,12 +57,12 @@ const userCreateHRIPlatform = (name: string) => {
             <div class="item" v-for="it of platforms" :key="it">
               <n-tooltip>
                 <template #trigger>
-                  <div class="item_trigger" @click="userCreateHRIPlatform(`MPhone`)">
-                    <img src="@/assets/images/platform.svg" alt="HRI platform" />
+                  <div class="item_trigger" @click="userCreateHRIPlatform(it.key)">
+                    <img :src="it.icon" :alt="it.name" />
                   </div>
                 </template>
 
-                Mobile phone
+                {{ it.name }}
               </n-tooltip>
             </div>
           </XyzTransitionGroup>
