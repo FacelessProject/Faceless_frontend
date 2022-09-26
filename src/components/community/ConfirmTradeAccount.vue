@@ -65,7 +65,7 @@ watch(
 </script>
 
 <template>
-  <n-modal v-model:show="show" :z-index="10000">
+  <n-modal :show="show" :z-index="10000">
     <div id="ConfirmTradeAccount">
       <n-scrollbar style="max-height: 500px">
         <div class="content">
