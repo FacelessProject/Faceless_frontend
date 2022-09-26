@@ -23,7 +23,7 @@ const confirm = async () => {
 <template>
   <div id="ReceiverAccount">
     <div class="logo">
-      <img src="@/assets/images/platform.svg" />
+      <img src="@/assets/images/phone.svg" />
     </div>
 
     <span class="hint"> Please enter the receiver's HRI account. </span>
@@ -87,8 +87,8 @@ const confirm = async () => {
     justify-content: center;
 
     img {
-      width: 52px;
-      height: 52px;
+      width: 45px;
+      height: 45px;
       object-fit: contain;
       flex: 0 0 auto;
     }

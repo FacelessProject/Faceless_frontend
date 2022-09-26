@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { useWallet } from "@/store";
-import { StatusUpdateButton } from "@/components/community";
+import { StatusUpdateButton, eras } from "@/components/community";
 
 let loading = ref(false);
 
@@ -14,7 +14,7 @@ const emits = defineEmits(["loadOtherComponent"]);
 const readUserAccounts = async () => {
   return new Promise(res => {
     setTimeout(() => {
-      res([1, 2]);
+      res(eras);
     }, 3000);
   });
 };
@@ -55,9 +55,9 @@ watch(
           <!-- 账号列表 -->
           <XyzTransitionGroup appear-visible xyz="fade small-3 down-25% stagger-1.5">
             <div class="item" v-for="it of accounts" :key="it" @click="toAccountItem(it)">
-              <span class="type"> Twitter </span>
-              <span class="account"> @Hellohuman </span>
-              <img src="@/assets/images/twitter.png" />
+              <span class="type"> {{ it.platform }} </span>
+              <span class="account"> {{ it.username }} </span>
+              <img :src="it.icon" />
             </div>
           </XyzTransitionGroup>
 

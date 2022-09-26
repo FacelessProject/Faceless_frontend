@@ -28,6 +28,7 @@ const backParentComponent = ({ name }: LoadOtherComponentParams) => {
   <div id="phone">
     <transition mode="out-in" name="phone">
       <component
+        frontPage="AccountList"
         parentComponent="AddHRIPlatform"
         @backParentComponent="backParentComponent"
         :is="phoneBusinessComponents[currentBusinessComponent]"

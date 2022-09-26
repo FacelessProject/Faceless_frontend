@@ -1,7 +1,15 @@
 import icon from "@/assets/images/eth.svg";
-import platform from "@/assets/images/platform.svg";
+import meta from "@/assets/images/meta.svg";
+import more from "@/assets/images/more.svg";
+import phone from "@/assets/images/phone.svg";
+import gmail from "@/assets/images/gmail.svg";
+import twitter from "@/assets/images/twitter.svg";
+import telegram from "@/assets/images/telegram.svg";
+import passport from "@/assets/images/passport.svg";
+import drivelicense from "@/assets/images/drivelicense.svg";
+import twitterPlatform from "@/assets/images/twitterPlatform.png";
 
-const mocks = [
+const tokens = [
   {
     icon,
     name: "ETH",
@@ -232,52 +240,127 @@ const medias = [
 
 const hris = [
   {
-    icon: platform,
-    name: "Mobile phone",
+    icon: phone,
+    name: "Mobile Phone",
     key: "MPhone",
   },
 
   {
-    icon: platform,
-    name: "Mobile phone",
+    icon: telegram,
+    name: "Telegram",
     key: "MPhone",
   },
 
   {
-    icon: platform,
-    name: "Mobile phone",
+    icon: gmail,
+    name: "Gmail",
     key: "MPhone",
   },
 
   {
-    icon: platform,
-    name: "Mobile phone",
+    icon: twitter,
+    name: "Twitter",
     key: "MPhone",
   },
 
   {
-    icon: platform,
-    name: "Mobile phone",
+    icon: meta,
+    name: "Meta",
     key: "MPhone",
   },
 
   {
-    icon: platform,
-    name: "Mobile phone",
+    icon: passport,
+    name: "Passport",
     key: "MPhone",
   },
 
   {
-    icon: platform,
-    name: "Mobile phone",
+    icon: drivelicense,
+    name: "Drivelicense",
     key: "MPhone",
   },
 
   {
-    icon: platform,
-    name: "Mobile phone",
+    icon: more,
+    name: "More in support",
     key: "MPhone",
   },
 ];
 
-export { mocks, medias, hris };
+const eras = [
+  {
+    platform: "Twitter",
+    username: "@Hellohuman",
+    icon: twitterPlatform,
+  },
+];
+
+const areas = [
+  {
+    key: "1",
+    name: "+1 America",
+  },
+
+  {
+    key: "7",
+    name: "+7 Russia",
+  },
+
+  {
+    key: "81",
+    name: "+81 Japan",
+  },
+
+  {
+    key: "82",
+    name: "+82 South Korea",
+  },
+
+  {
+    key: "33",
+    name: "+33 France",
+  },
+
+  {
+    key: "44",
+    name: "+44 England",
+  },
+
+  {
+    key: "49",
+    name: "+49 Germany",
+  },
+
+  {
+    key: "61",
+    name: "+61 Australia",
+  },
+
+  {
+    key: "64",
+    name: "+64 New Zealand",
+  },
+
+  {
+    key: "65",
+    name: "+65 Singapore",
+  },
+
+  {
+    key: "66",
+    name: "+66 Thailand",
+  },
+
+  {
+    key: "84",
+    name: "+84 Vietnam",
+  },
+
+  {
+    key: "86",
+    name: "+86 Chinese Mainland",
+  },
+];
+
+export { tokens, medias, hris, eras, areas };

@@ -3,6 +3,6 @@ import SelectCoin from "./SelectCoin.vue";
 import StatusUpdateButton from "./StatusUpdateButton.vue";
 import ConfirmTradeAccount from "./ConfirmTradeAccount.vue";
 
-export { mocks, medias, hris } from "./imitate";
+export { tokens, medias, hris, eras, areas } from "./imitate";
 
 export { StatusUpdateButton, RouteBack, SelectCoin, ConfirmTradeAccount };

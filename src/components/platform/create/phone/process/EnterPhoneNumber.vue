@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useUser } from "@/store";
 import { ref, computed } from "vue";
-import { RouteBack, StatusUpdateButton } from "@/components/community";
+import { RouteBack, StatusUpdateButton, areas } from "@/components/community";
 
 const emits = defineEmits(["backParentComponent", "loadOtherComponent"]);
+
+const user = useUser();
 
 defineProps<{
   parentComponent: string;
@@ -26,13 +29,14 @@ const onUserClickRouteBack = (name: string) => {
 };
 
 const confirm = async () => {
+  user.$patch({ createHRIPlatform: { phone: { areaCodes, phoneNumber } } });
   emits("loadOtherComponent", { name: "EnterCode" });
 };
 
 const readAreaCodes = async () => {
   return new Promise(res => {
     setTimeout(() => {
-      res([{ name: "+86 中国大陆", key: "86" }]);
+      res(areas);
     }, 3000);
   });
 };

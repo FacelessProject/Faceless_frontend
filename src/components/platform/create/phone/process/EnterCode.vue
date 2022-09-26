@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { RouteBack, StatusUpdateButton } from "@/components/community";
+import { RouteBack, StatusUpdateButton, eras } from "@/components/community";
+import phonePlatform from "@/assets/images/phonePlatform.png";
+import { useUser } from "@/store";
 
 const emits = defineEmits(["backParentComponent", "loadOtherComponent"]);
 
+const user: any = useUser();
+
 const props = defineProps<{
+  frontPage: string;
   parentComponent: string;
 }>();
 
@@ -20,7 +25,9 @@ const onUserClickRouteBack = (name: string) => {
 };
 
 const confirm = async () => {
-  emits("backParentComponent", { name: props.parentComponent });
+  const username = `+${user.createHRIPlatform.phone.areaCodes}-${user.createHRIPlatform.phone.phoneNumber}`;
+  eras.push({ icon: phonePlatform, platform: "Mobile Phone", username });
+  emits("backParentComponent", { name: props.frontPage });
 };
 
 const onlyNumber = (num: string) => {

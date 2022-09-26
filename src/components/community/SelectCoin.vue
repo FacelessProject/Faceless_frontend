@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import { useWallet } from "@/store";
 import { filter, cloneDeep } from "lodash-es";
 import { HandClick, ListSearch } from "@vicons/tabler";
-import { useWallet } from "@/store";
-import { mocks } from "./imitate";
+import { tokens } from "./imitate";
 
 const wallet = useWallet();
 
@@ -26,7 +26,7 @@ let cacheCoins: any = ref([]);
 const readCoins = async () => {
   return new Promise(res => {
     setTimeout(() => {
-      res(mocks);
+      res(tokens);
     }, 3000);
   });
 };

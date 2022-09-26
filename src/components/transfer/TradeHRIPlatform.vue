@@ -157,12 +157,17 @@ const userTradeHRIPlatform = (platform: object) => {
           justify-content: center;
 
           img {
-            width: 52px;
-            height: 52px;
+            width: 45px;
+            height: 45px;
             object-fit: contain;
             transition: all 0.5s;
             opacity: 0.5;
           }
+        }
+
+        &:last-child .item_trigger img {
+          width: 35px;
+          height: 35px;
         }
       }
     }
