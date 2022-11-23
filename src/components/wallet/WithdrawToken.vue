@@ -20,6 +20,7 @@ const onUserClickRouteBack = (name: string) => {
 };
 
 const confirm = async () => {
+  alert("withdrawConfirm");
   emits("loadOtherComponent", { name: "AccountItem" });
 };
 

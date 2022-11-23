@@ -18,6 +18,7 @@ const onUserClickRouteBack = (name: string) => {
 };
 
 const confirm = async () => {
+  alert("depositConfirm");
   emits("loadOtherComponent", { name: "AccountItem" });
 };
 

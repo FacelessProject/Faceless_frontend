@@ -46,6 +46,7 @@ const buttonStatusTheme = computed(() => {
 });
 
 const confirm = async () => {
+  alert("transferConfirm");
   emits("closeTradeAccount");
 };
 
