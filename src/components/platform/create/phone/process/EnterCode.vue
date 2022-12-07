@@ -2,11 +2,13 @@
 import { ref, computed } from "vue";
 import { RouteBack, StatusUpdateButton, eras } from "@/components/community";
 import phonePlatform from "@/assets/images/phonePlatform.png";
-import { useUser } from "@/store";
+import { useUser, useSubstrate } from "@/store";
+import { platform_id } from "@/utils/account"; 
 
 const emits = defineEmits(["backParentComponent", "loadOtherComponent"]);
 
 const user: any = useUser();
+const substrate = useSubstrate();
 
 const props = defineProps<{
   frontPage: string;
@@ -26,7 +28,10 @@ const onUserClickRouteBack = (name: string) => {
 
 const confirm = async () => {
   const username = `+${user.createHRIPlatform.phone.areaCodes}-${user.createHRIPlatform.phone.phoneNumber}`;
-  eras.push({ icon: phonePlatform, platform: "Mobile Phone", username });
+  let platform = "Mobile Phone";
+  eras[platform_id(platform, username)] = { icon: phonePlatform, platform, username };
+  // Register the account on substrate pallet
+  await substrate.client.register("Mobile Phone", username);
   emits("backParentComponent", { name: props.frontPage });
 };
 

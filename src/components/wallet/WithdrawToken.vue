@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { RouteBack, StatusUpdateButton, SelectCoin } from "@/components/community";
+import { useAccount, useSubstrate } from "@/store";
+
+const account = useAccount();
+
+const substrate = useSubstrate();
 
 const emits = defineEmits(["loadOtherComponent"]);
 
@@ -20,7 +25,8 @@ const onUserClickRouteBack = (name: string) => {
 };
 
 const confirm = async () => {
-  alert("withdrawConfirm");
+  if (!amount.value) return;
+  await substrate.client.withdraw(address.value, amount.value, account.platform, account.username);
   emits("loadOtherComponent", { name: "AccountItem" });
 };
 

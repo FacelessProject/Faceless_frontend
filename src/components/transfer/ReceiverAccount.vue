@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { RouteBack, StatusUpdateButton } from "@/components/community";
+import { useReceiverAccount } from "@/store";
+
+const receiverAccount = useReceiverAccount();
 
 const emits = defineEmits(["loadOtherComponent"]);
 
 let account = ref(null);
+let mpk = ref(null);
 
 const buttonStatusTheme = computed(() => {
   if (account.value) return "light";
@@ -16,6 +20,8 @@ const onUserClickRouteBack = (name: string) => {
 };
 
 const confirm = async () => {
+  receiverAccount.username = account.value;
+  receiverAccount.mpk = mpk.value;
   emits("loadOtherComponent", { name: "TradeAmount" });
 };
 </script>
@@ -34,8 +40,17 @@ const confirm = async () => {
           autofocus
           clearable
           :minlength="1"
-          placeholder="Enter Account"
+          placeholder="Enter Username"
           v-model:value="account"
+        />
+      </div>
+      <div class="item">
+        <n-input
+          autofocus
+          clearable
+          :minlength="1"
+          placeholder="Enter MPK"
+          v-model:value="mpk"
         />
       </div>
     </div>

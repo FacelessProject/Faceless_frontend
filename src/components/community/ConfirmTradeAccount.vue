@@ -4,13 +4,17 @@ import { ref, computed, watch } from "vue";
 import { readCoin, readAvatar } from "@/utils/asset";
 import { Close, CheckmarkDoneSharp } from "@vicons/ionicons5";
 import { StatusUpdateButton } from "@/components/community";
-import { useWallet } from "@/store";
+import { useWallet, useReceiverAccount, useSubstrate } from "@/store";
 
 let loading = ref(false);
 
 let accounts: any = ref([]);
 
 const wallet = useWallet();
+
+const receiverAccount = useReceiverAccount();
+
+const substrate = useSubstrate();
 
 const emits = defineEmits(["closeTradeAccount"]);
 
@@ -22,10 +26,19 @@ const props = defineProps<{
 
 let account: any = ref(null);
 
+const readBalance = async (platform: string, username: string) => {
+  return await substrate.client.balance(platform, username);
+};
+
 const readUserAccounts = async () => {
   return new Promise(res => {
-    setTimeout(() => {
-      res(medias);
+    setTimeout(async () => {
+      let values = [];
+      for (let id in medias) {
+        medias[id].amount = await readBalance(medias[id].platform, medias[id].username);
+        values.push(medias[id]);
+      }
+      res(values);
     }, 3000);
   });
 };
@@ -46,7 +59,13 @@ const buttonStatusTheme = computed(() => {
 });
 
 const confirm = async () => {
-  alert("transferConfirm");
+  await substrate.client.transfer(
+    props.amount, 
+    account.value.platform, 
+    account.value.username,
+    receiverAccount.platform,
+    receiverAccount.username,
+    receiverAccount.mpk);
   emits("closeTradeAccount");
 };
 

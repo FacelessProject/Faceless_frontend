@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { useWallet } from "@/store";
+import { useWallet, useAccount, useSubstrate } from "@/store";
 import { RouteBack, StatusUpdateButton } from "@/components/community";
 
 let currentQueryType = ref("history");
@@ -13,9 +13,16 @@ let historys: any = ref([]);
 
 let tokens: any = ref([]);
 
+let balance: any = ref(0);
+
 const wallet = useWallet();
 
+const account = useAccount();
+
+const substrate = useSubstrate();
+
 const emits = defineEmits(["loadOtherComponent"]);
+
 
 const readAccountHistoryTradeRecords = async () => {
   return new Promise(res => {
@@ -70,6 +77,13 @@ watch(
   },
   { deep: true, immediate: true },
 );
+
+const readBalance = async () => {
+  balance.value = await substrate.client.balance(account.platform, account.username);
+};
+
+readBalance();
+
 </script>
 
 <template>
@@ -81,12 +95,20 @@ watch(
 
     <img src="@/assets/images/account.png" class="userAvatar" />
 
-    <div class="info">
+    <!-- <div class="info">
       <img src="@/assets/images/symbol.svg" class="symbol" />
       <span class="symbol_name"> @Hellohuman </span>
     </div>
 
-    <div class="wealth">$<n-number-animation show-separator :precision="2" :to="1784.75" /></div>
+    <div class="wealth">$<n-number-animation show-separator :precision="2" :to="1784.75" /></div> -->
+
+    <div class="info">
+      <img :src="account.icon" class="symbol" />
+      <span class="symbol_name"> {{ account.platform }} </span>
+      <span class="symbol_name"> {{ account.username }} </span>
+    </div>
+
+    <div class="wealth"><n-number-animation show-separator :precision="2" :to="balance" /></div>
 
     <div class="content">
       <div class="deposit">

@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import ConnectWallet from "@/plugins/wallet/render/index.vue";
+import { useSubstrate, initFaceless } from "@/store";
+
 
 let currentRoute = ref("wallet");
 
@@ -11,6 +13,17 @@ const toRoute = (route: string) => {
   currentRoute.value = route;
   push(`/${route}`);
 };
+
+let mpk = ref(null);
+let address = ref(null);
+const substrate = useSubstrate();
+const init = async () => {
+  substrate.client = await initFaceless();
+  mpk.value = substrate.client.ibe_keypair?.[1];
+  address.value = substrate.client.account.address;
+}
+init();
+
 </script>
 
 <template>
@@ -23,6 +36,7 @@ const toRoute = (route: string) => {
       <div class="swap">
         <div :class="[`swap_content`, currentRoute]">
           <span class="swap_item" @click="toRoute(`wallet`)"> HRI Wallets </span>
+          <!-- Zico: The transfer tab should only appears after selecting an account, otherwise how do we decide the sender? -->
           <span class="swap_item" @click="toRoute(`transfer`)"> Transfer </span>
           <span class="piece" />
         </div>
@@ -41,6 +55,10 @@ const toRoute = (route: string) => {
           <component :is="Component" />
         </transition>
       </router-view>
+      <div>
+        <p><span class="info"> Polkadot wallet address: {{ address }} </span></p>
+        <p><span class="info"> IBE master public key: {{ mpk }} </span></p>
+      </div>
     </div>
   </div>
 </template>
@@ -162,6 +180,15 @@ const toRoute = (route: string) => {
     display: flex;
     flex-direction: column;
     margin-top: 40px;
+  }
+
+  .info {
+      font-size: 17px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 17px;
+      font-family: "Ubuntu-Regular";
+      margin-left: 10px;
   }
 }
 

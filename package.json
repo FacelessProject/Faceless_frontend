@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@animxyz/vue3": "^0.6.7",
+    "@polkadot/api": "^9.9.4",
+    "@polkadot/api-contract": "^9.9.4",
     "axios": "0.21.1",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
@@ -40,7 +42,13 @@
   },
   "devDependencies": {
     "@rollup/plugin-inject": "^4.0.3",
+    "@types/crypto-js": "^4.1.1",
     "@types/node": "^16.6.2",
+    "@vicons/antd": "^0.12.0",
+    "@vicons/ionicons4": "^0.12.0",
+    "@vicons/ionicons5": "^0.11.0",
+    "@vicons/material": "^0.12.0",
+    "@vicons/tabler": "^0.12.0",
     "@vitejs/plugin-vue": "^2.0.0",
     "@zougt/vite-plugin-theme-preprocessor": "^1.4.4",
     "autoprefixer": "^10.3.4",
@@ -50,12 +58,7 @@
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
     "vite-plugin-compression": "^0.5.1",
-    "vue-tsc": "^0.29.8",
-    "@types/crypto-js": "^4.1.1",
-    "@vicons/antd": "^0.12.0",
-    "@vicons/ionicons4": "^0.12.0",
-    "@vicons/ionicons5": "^0.11.0",
-    "@vicons/material": "^0.12.0",
-    "@vicons/tabler": "^0.12.0"
+    "vite-plugin-wasm-pack": "^0.1.12",
+    "vue-tsc": "^0.29.8"
   }
 }

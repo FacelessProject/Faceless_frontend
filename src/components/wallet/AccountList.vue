@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { useWallet } from "@/store";
+import { useWallet, useAccount } from "@/store";
 import { StatusUpdateButton, eras } from "@/components/community";
 
 let loading = ref(false);
@@ -9,13 +9,19 @@ let accounts: any = ref([]);
 
 const wallet = useWallet();
 
+const account = useAccount();
+
 const emits = defineEmits(["loadOtherComponent"]);
 
 const readUserAccounts = async () => {
   return new Promise(res => {
     setTimeout(() => {
-      res(eras);
-    }, 3000);
+      let accs = [];
+      for (let id in eras) {
+        accs.push(eras[id]);
+      }
+      res(accs);
+    }, 1000);
   });
 };
 
@@ -30,6 +36,7 @@ const confirm = async () => {
 };
 
 const toAccountItem = (accountItem: object) => {
+  account.$patch(accountItem);
   emits("loadOtherComponent", { name: "AccountItem" });
 };
 

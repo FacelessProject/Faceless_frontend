@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { hris } from "@/components/community";
+import { useReceiverAccount } from "@/store";
+
+const receiverAccount = useReceiverAccount();
 
 let loading = ref(false);
 
@@ -12,7 +15,7 @@ const readHRIPlatforms = async () => {
   return new Promise(res => {
     setTimeout(() => {
       res(hris);
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -25,6 +28,7 @@ const getHRIPlatforms = async () => {
 getHRIPlatforms();
 
 const userTradeHRIPlatform = (platform: object) => {
+  receiverAccount.platform = platform.name;
   emits("loadOtherComponent", { name: "ReceiverAccount" });
 };
 </script>

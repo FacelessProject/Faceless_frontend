@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { RouteBack, hris } from "@/components/community";
+import { useWallet, Connect } from "@/store";
 
 let loading = ref(false);
 
 let platforms: any = ref([]);
+
+const Wallet = useWallet();
 
 const emits = defineEmits(["loadOtherComponent"]);
 

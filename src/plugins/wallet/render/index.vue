@@ -4,7 +4,7 @@ import Web3Provider from "wallet-ethers";
 import { notification } from "@/utils/command";
 import { output, config, walletIcons } from "@/plugins/wallet/tidy";
 import { SwapHorizRound, LogOutRound } from "@vicons/material";
-import { useWallet, Connect } from "@/store";
+import { useWallet, Connect, useSubstrate, initFaceless } from "@/store";
 import { omiter } from "@/utils/omit";
 
 const props = defineProps<{
@@ -83,6 +83,7 @@ const autoloadCacheMetadata = () => {
 };
 
 autoloadCacheMetadata();
+
 </script>
 
 <template>

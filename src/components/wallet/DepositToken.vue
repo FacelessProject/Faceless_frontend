@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { RouteBack, StatusUpdateButton, SelectCoin } from "@/components/community";
+import { RouteBack, StatusUpdateButton, SelectCoin, medias } from "@/components/community";
+import { useAccount, useSubstrate } from "@/store";
+import { platform_id } from "@/utils/account";
+
+const account = useAccount();
+
+const substrate = useSubstrate();
 
 const emits = defineEmits(["loadOtherComponent"]);
 
@@ -18,7 +24,23 @@ const onUserClickRouteBack = (name: string) => {
 };
 
 const confirm = async () => {
-  alert("depositConfirm");
+  if (!amount.value) return;
+  await substrate.client.deposit(amount.value, account.platform, account.username);
+  let id = platform_id(account.platform, account.username);
+  if (id in medias) {
+    medias[platform_id].amount += amount.value;
+  }
+  else {
+    medias[platform_id] = {
+      avatar: "https://avatars.githubusercontent.com/u/2106987?v=4",
+      username: account.username,
+      platform: account.platform,
+      // TODO: need to update amount according to on-chain balance
+      amount: amount.value,
+      coin: "ETH",
+      key: medias.length + 1, 
+    };
+  }
   emits("loadOtherComponent", { name: "AccountItem" });
 };
 

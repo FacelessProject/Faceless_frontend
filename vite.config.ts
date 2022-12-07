@@ -10,6 +10,8 @@ import vuePlugin from "@vitejs/plugin-vue";
 import compressPlugin from "vite-plugin-compression";
 // 主题配置插件
 import themePreprocessorPlugin from "@zougt/vite-plugin-theme-preprocessor";
+// wasm plugin
+import wasmPack from 'vite-plugin-wasm-pack';
 
 // 配置项
 export default defineConfig({
@@ -50,6 +52,8 @@ export default defineConfig({
         extract: false,
       },
     }),
+    // wasm wrapper for faceless crypto lib written in Rust
+    wasmPack('../faceless-wasm-wrapper'),
   ],
   // JSON解释方式
   json: {
@@ -134,4 +138,5 @@ export default defineConfig({
       },
     },
   },
+  
 });
