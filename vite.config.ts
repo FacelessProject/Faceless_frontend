@@ -53,7 +53,7 @@ export default defineConfig({
       },
     }),
     // wasm wrapper for faceless crypto lib written in Rust
-    wasmPack('../faceless-wasm-wrapper'),
+    wasmPack('./faceless-wasm-wrapper'),
   ],
   // JSON解释方式
   json: {

@@ -1,0 +1,15 @@
+{
+  "name": "faceless-wasm-wrapper",
+  "collaborators": [
+    "zhicong.hzc <zhicong.hzc@alibaba-inc.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "faceless_wasm_wrapper_bg.wasm",
+    "faceless_wasm_wrapper.js",
+    "faceless_wasm_wrapper.d.ts"
+  ],
+  "module": "faceless_wasm_wrapper.js",
+  "types": "faceless_wasm_wrapper.d.ts",
+  "sideEffects": false
+}
