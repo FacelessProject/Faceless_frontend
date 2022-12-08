@@ -105,7 +105,7 @@ export default defineConfig({
     // 地址
     host: "127.0.0.1",
     // 自动打开
-    open: true,
+    open: false,
     // 代理
     proxy: {
       // 测试
