@@ -177,7 +177,7 @@ class FacelessClient {
 
 const initFaceless = async () => {
   // Initialise the provider to connect to the local node
-  const provider = new WsProvider('ws://127.0.0.1:9944');
+  const provider = new WsProvider('ws://45.32.60.117:9944');
 
   // Create the API and wait until ready
   const api = await ApiPromise.create({ provider });
