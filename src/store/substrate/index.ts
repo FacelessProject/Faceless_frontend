@@ -74,6 +74,8 @@ class FacelessClient {
     const hashed_id = derive_pk_id(platform, id, this.ibe_keypair?.[1]);
     console.log("registered id: ", hashed_id);
 
+    let start = new Date().getTime();
+
     const unsub = await this.api.tx.faceless
     .register(hashed_id)
     .signAndSend(this.account, async ({ events = [], status, txHash }) => {
@@ -84,6 +86,9 @@ class FacelessClient {
           console.log(`\t' ${phase}: ${section}.${method}:: ${data}`);
         });
 
+        let duration = new Date().getTime() - start;
+        console.log(`[Register] ${duration} ms`);
+
         unsub();
       }
 
@@ -93,6 +98,8 @@ class FacelessClient {
   async deposit(value: number, platform: string, id: string) {
   
     const hashed_id = derive_pk_id(platform, id, this.ibe_keypair?.[1]);
+
+    let start = new Date().getTime();
   
     const unsub = await this.api.tx.faceless
       .deposit(hashed_id, value)
@@ -103,6 +110,9 @@ class FacelessClient {
           events.forEach(({ phase, event: { data, method, section } }) => {
             console.log(`\t' ${phase}: ${section}.${method}:: ${data}`);
           });
+
+          let duration = new Date().getTime() - start;
+          console.log(`[Deposit] ${duration} ms`);
   
           unsub();
         }
@@ -113,6 +123,8 @@ class FacelessClient {
   
   async withdraw(destination: string, value: number, platform: string, id: string) {
     const hashed_id = derive_pk_id(platform, id, this.ibe_keypair?.[1]);
+
+    let start = new Date().getTime();
   
     const unsub = await this.api.tx.faceless
       .withdraw(hashed_id, destination, value)
@@ -122,6 +134,9 @@ class FacelessClient {
           events.forEach(({ phase, event: { data, method, section } }) => {
             console.log(`\t' ${phase}: ${section}.${method}:: ${data}`);
           });
+
+          let duration = new Date().getTime() - start;
+          console.log(`[Withdraw] ${duration} ms`);
   
           unsub();
         }
@@ -157,6 +172,8 @@ class FacelessClient {
     const r = this.ibe.random_scalar();
     const amount1 = this.ibe.encrypt_with_randomness(-value, platform_id(sender_platform, sender_username), mpk, r);
     const amount2 = this.ibe.encrypt_with_randomness(value, platform_id(receiver_platform, receiver_username), receiver_mpk, r);
+
+    let start = new Date().getTime();
   
     const unsub = await this.api.tx.faceless
       .transfer(sender_pk_id, receiver_pk_id, amount1, amount2)
@@ -166,6 +183,9 @@ class FacelessClient {
           events.forEach(({ phase, event: { data, method, section } }) => {
             console.log(`\t' ${phase}: ${section}.${method}:: ${data}`);
           });
+
+          let duration = new Date().getTime() - start;
+          console.log(`[Transfer] ${duration} ms`);
   
           unsub();
         }
