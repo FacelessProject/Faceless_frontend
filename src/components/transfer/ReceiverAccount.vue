@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { RouteBack, StatusUpdateButton } from "@/components/community";
-import { useReceiverAccount } from "@/store";
+import { useSubstrate, useReceiverAccount } from "@/store";
 
 const receiverAccount = useReceiverAccount();
 
@@ -19,9 +19,10 @@ const onUserClickRouteBack = (name: string) => {
   emits("loadOtherComponent", { name });
 };
 
+const substrate = useSubstrate();
 const confirm = async () => {
   receiverAccount.username = account.value;
-  receiverAccount.mpk = mpk.value;
+  receiverAccount.mpk = substrate.client.ibe_keypair?.[1];;
   emits("loadOtherComponent", { name: "TradeAmount" });
 };
 </script>
@@ -44,7 +45,7 @@ const confirm = async () => {
           v-model:value="account"
         />
       </div>
-      <div class="item">
+      <!-- <div class="item">
         <n-input
           autofocus
           clearable
@@ -52,7 +53,7 @@ const confirm = async () => {
           placeholder="Enter MPK"
           v-model:value="mpk"
         />
-      </div>
+      </div> -->
     </div>
 
     <div class="btn">
