@@ -5,7 +5,7 @@ import router from "./router";
 import Env from "./assets/env";
 import i18n from "./plugins/i18n";
 import naive from "./plugins/naive";
-import { createPinia } from "pinia";
+import pinia from "@/utils/piniaInstance";
 import VueAnimXyz from "@animxyz/vue3";
 import { VueReCaptcha } from "vue-recaptcha-v3";
 
@@ -20,8 +20,8 @@ import "cropperjs/dist/cropper.min.css";
 createApp(Main)
   .use(i18n)
   .use(naive)
+  .use(pinia)
   .use(router)
   .use(VueAnimXyz)
-  .use(createPinia())
   .use(VueReCaptcha, { siteKey: Env.faceless.siteKey, loaderOptions: { autoHideBadge: true } })
   .mount("#container");

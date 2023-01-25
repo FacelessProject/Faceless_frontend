@@ -2,7 +2,7 @@ import icon from "@/assets/images/eth.svg";
 import meta from "@/assets/images/meta.svg";
 import more from "@/assets/images/more.svg";
 import phone from "@/assets/images/phone.svg";
-import gmail from "@/assets/images/gmail.svg";
+import google from "@/assets/images/gmail.svg";
 import twitter from "@/assets/images/twitter.svg";
 import telegram from "@/assets/images/telegram.svg";
 import passport from "@/assets/images/passport.svg";
@@ -252,15 +252,15 @@ const hris = [
   },
 
   {
-    icon: gmail,
-    name: "Gmail",
-    key: "MPhone",
+    icon: google,
+    name: "Google",
+    key: "Google",
   },
 
   {
     icon: twitter,
     name: "Twitter",
-    key: "MPhone",
+    key: "Twitter",
   },
 
   {

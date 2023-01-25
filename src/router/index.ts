@@ -1,5 +1,32 @@
 import { useWallet } from "@/store";
 import { createRouter, RouteRecordRaw, createWebHistory } from "vue-router";
+import { createAccount } from "@/utils/registerAccount";
+
+// OmniAuth
+const callbackOmniAuth = async (to, from, next) => {
+  const authHeaders = {
+    headers: {
+      "access-token": to.query.auth_token,
+      client: to.query.client_id,
+      uid: to.query.uid,
+    },
+    data: {
+      data: {
+        nickname: to.query.nickname,
+      },
+    },
+  };
+
+  if (to.params.provider === "google_oauth2") {
+    await createAccount("Google", to.query.nickname);
+  }
+
+  if (to.params.provider === "twitter") {
+    await createAccount("Twitter", to.query.nickname);
+  }
+
+  next("/wallet");
+};
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -41,6 +68,13 @@ const routes: Array<RouteRecordRaw> = [
     path: "/:path(.*)*",
     component: () => import("@/views/error.vue"),
     meta: { check: false },
+  },
+
+  {
+    path: "/omniauth/:provider/callback",
+    name: "Callback",
+    component: () => import("@/views/wallet.vue"),
+    beforeEnter: callbackOmniAuth,
   },
 ];
 

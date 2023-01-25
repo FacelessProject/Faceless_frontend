@@ -4,6 +4,7 @@ import { RouteBack, StatusUpdateButton, eras } from "@/components/community";
 import phonePlatform from "@/assets/images/phonePlatform.png";
 import { useUser, useSubstrate } from "@/store";
 import { platform_id } from "@/utils/account"; 
+import { message } from "@/utils/command";
 
 const emits = defineEmits(["backParentComponent", "loadOtherComponent"]);
 
@@ -33,6 +34,13 @@ const confirm = async () => {
   // Register the account on substrate pallet
   await substrate.client.register("Mobile Phone", username);
   emits("backParentComponent", { name: props.frontPage });
+  // message.error(
+  //   'Once upon a time you dressed so fine',
+  //   {
+  //     closable: true,
+  //     duration: 5000
+  //   }
+  // );
 };
 
 const onlyNumber = (num: string) => {

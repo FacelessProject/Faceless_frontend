@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { RouteBack, hris } from "@/components/community";
+import { RouteBack, hris, eras } from "@/components/community";
 import { useWallet, Connect } from "@/store";
 
 let loading = ref(false);
@@ -32,6 +32,18 @@ const onUserClickRouteBack = (name: string) => {
 };
 
 const userCreateHRIPlatform = (name: string) => {
+  if(name === "Twitter") {
+    window.sessionStorage.setItem("eras", JSON.stringify(eras));
+    window.location.href = `https://oauth.faceless.live/auth/twitter?auth_origin_url=${encodeURI("https://dapp.faceless.live")}/omniauth/twitter/callback`;
+    return;
+  }
+
+  if(name === "Google") {
+    window.sessionStorage.setItem("eras", JSON.stringify(eras));
+    window.location.href = `https://oauth.faceless.live/auth/google_oauth2?auth_origin_url=${encodeURI("https://dapp.faceless.live")}/omniauth/google_oauth2/callback`;
+    return;
+  }
+
   emits("loadOtherComponent", { name });
 };
 </script>
