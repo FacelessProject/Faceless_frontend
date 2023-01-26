@@ -14,12 +14,12 @@ const toRoute = (route: string) => {
   push(`/${route}`);
 };
 
-let mpk = ref(null);
+// let mpk = ref(null);
 let address = ref(null);
 const substrate = useSubstrate();
 const init = async () => {
   substrate.client = await initFaceless();
-  mpk.value = substrate.client.ibe_keypair?.[1];
+  // mpk.value = substrate.client.ibe_keypair?.[1];
   address.value = substrate.client.account.address;
 }
 init();
@@ -57,7 +57,7 @@ init();
       </router-view>
       <div>
         <p><span class="info"> Polkadot wallet address: {{ address }} </span></p>
-        <p><span class="info"> IBE master public key: {{ mpk }} </span></p>
+        <!-- <p><span class="info"> IBE master public key: {{ mpk }} </span></p> -->
       </div>
     </div>
   </div>
