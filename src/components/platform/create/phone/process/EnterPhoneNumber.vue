@@ -2,6 +2,8 @@
 import { useUser } from "@/store";
 import { ref, computed } from "vue";
 import { RouteBack, StatusUpdateButton, areas } from "@/components/community";
+import axios from "axios";
+import { message } from "@/utils/command";
 
 const emits = defineEmits(["backParentComponent", "loadOtherComponent"]);
 
@@ -30,7 +32,29 @@ const onUserClickRouteBack = (name: string) => {
 
 const confirm = async () => {
   user.$patch({ createHRIPlatform: { phone: { areaCodes, phoneNumber } } });
-  emits("loadOtherComponent", { name: "EnterCode" });
+
+  // send verify code
+  const response = await axios.post('https://oauth.faceless.live/otp',
+                                    {
+                                      area_code: areaCodes.value,
+                                      phone_number: phoneNumber.value
+                                    }
+  )
+
+  if (response.data.status === 'SUCCESS') {
+    emits("loadOtherComponent", { name: "EnterCode" });
+  }
+
+
+  if (response.data.status === 'ERROR') {
+    message.error(
+      response.data.message,
+      {
+        closable: true,
+        duration: 5000
+      }
+    );
+  }
 };
 
 const readAreaCodes = async () => {

@@ -5,6 +5,7 @@ import phonePlatform from "@/assets/images/phonePlatform.png";
 import { useUser, useSubstrate } from "@/store";
 import { platform_id } from "@/utils/account"; 
 import { message } from "@/utils/command";
+import axios from "axios";
 
 const emits = defineEmits(["backParentComponent", "loadOtherComponent"]);
 
@@ -28,19 +29,31 @@ const onUserClickRouteBack = (name: string) => {
 };
 
 const confirm = async () => {
-  const username = `+${user.createHRIPlatform.phone.areaCodes}-${user.createHRIPlatform.phone.phoneNumber}`;
-  let platform = "Mobile Phone";
-  eras[platform_id(platform, username)] = { icon: phonePlatform, platform, username };
-  // Register the account on substrate pallet
-  await substrate.client.register("Mobile Phone", username);
-  emits("backParentComponent", { name: props.frontPage });
-  // message.error(
-  //   'Once upon a time you dressed so fine',
-  //   {
-  //     closable: true,
-  //     duration: 5000
-  //   }
-  // );
+  // verify sms code through api
+  const response = await axios.post('https://oauth.faceless.live/otp/verify', {
+    area_code: user.createHRIPlatform.phone.areaCodes,
+    phone_number: user.createHRIPlatform.phone.phoneNumber,
+    verify_code: phoneCode.value
+  })
+
+  if (response.data.status === 'SUCCESS') {
+    const username = `+${user.createHRIPlatform.phone.areaCodes}-${user.createHRIPlatform.phone.phoneNumber}`;
+    let platform = "Mobile Phone";
+    eras[platform_id(platform, username)] = { icon: phonePlatform, platform, username };
+    // Register the account on substrate pallet
+    await substrate.client.register("Mobile Phone", username);
+    emits("backParentComponent", { name: props.frontPage });
+  }
+
+  if (response.data.status === 'ERROR') {
+    message.error(
+      response.data.message,
+      {
+        closable: true,
+        duration: 5000
+      }
+    );
+  }
 };
 
 const onlyNumber = (num: string) => {
