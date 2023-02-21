@@ -15,8 +15,10 @@ const createAccount = async (platform: string, username: string) => {
 
   substrate.client = await initFaceless();
 
-  eras[platform_id(platform, username)] = { icon: phonePlatform, platform, username };
-  await substrate.client.register(platform, username);
+  if (platform && username) {
+    eras[platform_id(platform, username)] = { icon: phonePlatform, platform, username };
+    await substrate.client.register(platform, username);
+  }
 }
 
 export { createAccount };

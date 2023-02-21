@@ -66,8 +66,24 @@ const confirm = async () => {
     receiverAccount.platform,
     receiverAccount.username,
     receiverAccount.mpk);
+
+
+  download("transfer.txt", `${account.value.username}@${account.value.platform} has transfer ${props.amount} ${props.coin?.name} to ${receiverAccount.username}@${receiverAccount.platform}`)
   emits("closeTradeAccount");
 };
+
+const download = (filename, text) => {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
 
 const close = () => {
   emits("closeTradeAccount");

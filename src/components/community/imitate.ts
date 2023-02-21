@@ -248,7 +248,7 @@ const hris = [
   {
     icon: telegram,
     name: "Telegram",
-    key: "MPhone",
+    key: "Telegram",
   },
 
   {

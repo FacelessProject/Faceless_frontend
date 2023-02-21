@@ -32,16 +32,32 @@ const onUserClickRouteBack = (name: string) => {
 };
 
 const userCreateHRIPlatform = (name: string) => {
-  if(name === "Twitter") {
+  if (name === "Twitter") {
     window.sessionStorage.setItem("eras", JSON.stringify(eras));
     window.location.href = `https://oauth.faceless.live/auth/twitter?auth_origin_url=${encodeURI("https://dapp.faceless.live")}/omniauth/twitter/callback`;
     return;
   }
 
-  if(name === "Google") {
+  if (name === "Google") {
     window.sessionStorage.setItem("eras", JSON.stringify(eras));
     window.location.href = `https://oauth.faceless.live/auth/google_oauth2?auth_origin_url=${encodeURI("https://dapp.faceless.live")}/omniauth/google_oauth2/callback`;
     return;
+  }
+
+  if (name === "Telegram") {
+    window.Telegram.Login.auth({ bot_id: '6290560220', request_access: 'write', embed: 1 }, (data) => {
+      console.log(data, '这是回调数据');//这里的data和之前返回的user数据和格式无差异
+      if (!data) {
+      //失败时你需要做的逻辑
+        window.sessionStorage.setItem("eras", JSON.stringify(eras));
+        window.location.href = `https://dapp.faceless.live/omniauth/cancel/callback`;
+        return
+      }
+      
+      window.sessionStorage.setItem("eras", JSON.stringify(eras));
+      window.location.href = `https://dapp.faceless.live/omniauth/telegram/callback?nickname=${data.username}`;
+      return
+    });
   }
 
   emits("loadOtherComponent", { name });

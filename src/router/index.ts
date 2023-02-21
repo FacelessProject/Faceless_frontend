@@ -25,6 +25,14 @@ const callbackOmniAuth = async (to, from, next) => {
     await createAccount("Twitter", to.query.nickname);
   }
 
+  if (to.params.provider === "telegram") {
+    await createAccount("Telegram", to.query.nickname);
+  }
+
+  if (to.params.provider === "cancel") {
+    await createAccount("", "");
+  }
+
   next("/wallet");
 };
 
