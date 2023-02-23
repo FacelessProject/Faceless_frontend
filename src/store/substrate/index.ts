@@ -161,7 +161,7 @@ class FacelessClient {
     const unsub = await this.api.tx.faceless
       .transfer(sender_pk_id, receiver_pk_id, amount1, amount2)
       .signAndSend(this.account, async ({ events = [], status, txHash }) => {
-        if (status.isFinalized || status.isInBlock) {  
+        if (status.isFinalized) {
           // Loop through Vec<EventRecord> to display all events
           events.forEach(({ phase, event: { data, method, section } }) => {
             console.log(`\t' ${phase}: ${section}.${method}:: ${data}`);
